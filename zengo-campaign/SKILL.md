@@ -195,6 +195,27 @@ Yes XX¢ ←                → No XX¢
 
 ---
 
+## Icon and Badge Usage — Priority Order
+
+**Generic icons (emoji, Unicode symbols) are the last resort.** Always check higher-priority sources first:
+
+| Priority | Source | Examples |
+|---|---|---|
+| 1 — Figma assets | Export SVG/PNG from the Figma file (`KiJ4p9z24Wu1enW0yUfQA9`) | Zengo category icons, market icons, UI elements |
+| 2 — Official brand assets | Use the real badge/logo image, not a symbol | Apple App Store badge PNG, Google Play badge PNG |
+| 3 — S3 library | Check `etoro-production/e-marketing/MarketingAutomation/Zengo/` first | `appstore-badge.png`, `playstore-badge.png`, flag images |
+| 4 — Generic icons | Unicode emoji / symbol only if nothing above is available | ⚽ 🗳️ ₿ — only as absolute fallback |
+
+**Specific cases:**
+- App Store download → use official Apple App Store badge image (`appstore-badge.png` on S3), not 🍎 or "Download on the App Store" text
+- Google Play download → use official Google Play badge image (`playstore-badge.png` on S3), not ▶ or plain text
+- Category icons (Sports / Politics / Crypto) → check Figma for Zengo-branded icons first; use emoji only if no Figma asset exists
+- Feature card icons → export from Figma; never substitute with Unicode
+
+**In practice:** Before writing any `&#128269;` or emoji into HTML, pause and ask: _Is there a Figma asset or official badge I should use instead?_
+
+---
+
 ## Naming Conventions
 
 **NEVER** use "prediction market/markets" in email copy or subject lines. Instead use:

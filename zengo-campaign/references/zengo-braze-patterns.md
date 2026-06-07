@@ -63,6 +63,39 @@ Braze auto-injects: open-tracking pixel, click-tracking rewrites, list-unsubscri
 
 ---
 
+## Icon and Badge Usage — Priority Order
+
+**Generic icons (emoji, Unicode) are the last resort.** Always resolve against higher-priority sources before writing any icon into HTML:
+
+1. **Figma assets first** — Export the icon as SVG/PNG from `KiJ4p9z24Wu1enW0yUfQA9`. Upload to S3. Use `<img>` tag.
+2. **Official brand badges second** — App Store, Google Play, social logos. Use the real official PNG, not an emoji substitute.
+3. **S3 library third** — Check `etoro-production/e-marketing/MarketingAutomation/Zengo/` for pre-existing assets (`appstore-badge.png`, `playstore-badge.png`, category icons, flag images).
+4. **Generic Unicode/emoji only** — When no asset from 1–3 exists and omitting the icon would hurt UX.
+
+### App store badges — always use real images
+```html
+<!-- App Store — use official badge image, never emoji/text substitute -->
+<a href="https://apps.apple.com/app/zengo/id1440297364">
+  <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/appstore-badge.png"
+       alt="Download on the App Store" width="140" height="42"
+       style="display:block;border:0;border-radius:8px;">
+</a>
+
+<!-- Google Play — use official badge image, never emoji/text substitute -->
+<a href="https://play.google.com/store/apps/details?id=com.zengo.wallet">
+  <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/playstore-badge.png"
+       alt="Get it on Google Play" width="140" height="42"
+       style="display:block;border:0;border-radius:8px;">
+</a>
+```
+
+### Category icons
+- Check Figma for Zengo-branded Sports / Politics / Crypto / etc. icons
+- If exported and on S3, use `<img>` at 24–32px
+- Only fall back to ⚽ 🗳️ ₿ if no Figma asset exists
+
+---
+
 ## 2. Liquid Personalization
 
 Braze uses **Liquid 5** (Shopify's template language) with Braze extensions.
