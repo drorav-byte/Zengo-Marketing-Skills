@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who Makes the Last Four? | Zengo — PREVIEW</title>
+  <style>
+    body { margin:0; padding:0; background:#101010; font-family:Verdana,Geneva,sans-serif; }
+    table { border-collapse:collapse; }
+    img { border:0; }
+    a { color:#fe990c; text-decoration:none; }
+
+    /* Live countdown display */
+    .countdown-wrap { text-align:center; }
+    .countdown-timer { display:inline-flex; align-items:center; gap:0; margin:0 auto; }
+    .cd-cell {
+      background:#ebe8e5;
+      border-radius:10px;
+      padding:14px 18px;
+      text-align:center;
+      min-width:64px;
+      display:inline-block;
+    }
+    .cd-num {
+      font-family:Verdana,Geneva,sans-serif;
+      font-size:32px;
+      font-weight:700;
+      color:#101010;
+      line-height:1;
+      display:block;
+      letter-spacing:-0.03em;
+    }
+    .cd-label {
+      font-family:Verdana,Geneva,sans-serif;
+      font-size:10px;
+      color:#707482;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      margin-top:6px;
+      display:block;
+    }
+    .cd-sep {
+      font-family:Verdana,Geneva,sans-serif;
+      font-size:28px;
+      font-weight:700;
+      color:#101010;
+      padding:0 10px;
+      padding-bottom:20px;
+      display:inline-block;
+    }
+
+    /* Pulsing orange dot on eyebrow */
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.5; transform:scale(0.7); }
+    }
+    .live-dot {
+      display:inline-block;
+      width:6px; height:6px;
+      background:#fe990c;
+      border-radius:50%;
+      vertical-align:middle;
+      margin-right:8px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#101010;">
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#101010;">
+<tr><td align="center">
+<table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="max-width:640px;width:100%;">
+
+<!-- LOGO -->
+<tr><td style="background:#101010;padding:24px 32px 16px;">
+  <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/zengo-wordmark-white.png" alt="Zengo" width="120" style="display:block;">
+</td></tr>
+
+<!-- HERO -->
+<tr><td style="background:#101010;padding:8px 32px 40px;">
+  <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fe990c;">
+    <span class="live-dot"></span>FIFA WORLD CUP 2026 &middot; LIVE MARKETS
+  </p>
+  <h1 style="margin:0 0 16px;font-size:38px;font-weight:700;line-height:1.1;color:#ffffff;">Who Makes<br>the Last Four?</h1>
+  <p style="margin:0 0 28px;font-size:15px;line-height:1.65;color:#a7aab3;">
+    Six nations. Four spots. Predict which teams reach the 2026 World Cup semi-finals
+    &mdash; buy <strong style="color:#00cecb;">Yes</strong> or <strong style="color:#ff5e5b;">No</strong> for as little as 1&cent;.
+  </p>
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td style="background:#fe990c;border-radius:100px;padding:14px 32px;">
+      <a href="#" style="font-size:15px;font-weight:700;color:#101010;text-decoration:none;display:block;">Predict Now &rarr;</a>
+    </td>
+  </tr></table>
+</td></tr>
+
+<!-- STATS -->
+<tr><td style="background:#101010;padding:0 32px 40px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#202020;border-radius:12px;">
+    <tr>
+      <td width="33%" style="padding:20px 16px;text-align:center;border-right:1px solid #2f3436;">
+        <p style="margin:0;font-size:22px;font-weight:700;color:#ffffff;">48</p>
+        <p style="margin:5px 0 0;font-size:11px;color:#707482;text-transform:uppercase;letter-spacing:1px;">Nations</p>
+      </td>
+      <td width="33%" style="padding:20px 16px;text-align:center;border-right:1px solid #2f3436;">
+        <p style="margin:0;font-size:22px;font-weight:700;color:#ffffff;">$4.2B+</p>
+        <p style="margin:5px 0 0;font-size:11px;color:#707482;text-transform:uppercase;letter-spacing:1px;">Volume</p>
+      </td>
+      <td width="33%" style="padding:20px 16px;text-align:center;">
+        <p style="margin:0;font-size:22px;font-weight:700;color:#ffffff;">1&cent;</p>
+        <p style="margin:5px 0 0;font-size:11px;color:#707482;text-transform:uppercase;letter-spacing:1px;">Min. Trade</p>
+      </td>
+    </tr>
+  </table>
+</td></tr>
+
+<!-- MARKETS HEADER -->
+<tr><td style="background:#ffffff;padding:40px 32px 20px;">
+  <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fe990c;">
+    <span style="display:inline-block;width:6px;height:6px;background:#fe990c;border-radius:50%;vertical-align:middle;margin-right:8px;"></span>LIVE MARKETS
+  </p>
+  <h2 style="margin:0 0 4px;font-size:24px;font-weight:700;color:#101010;">Pick Your Semifinalists</h2>
+  <p style="margin:0;font-size:13px;color:#707482;">Each market pays $1 per winning share. Prices reflect live market odds.</p>
+</td></tr>
+
+<!-- ROW 1 -->
+<tr><td style="background:#ffffff;padding:0 32px 14px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+  <td width="48%" valign="top" style="padding-right:8px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+    <tr><td style="padding:20px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="padding-right:10px;"><img src="https://flagcdn.com/w40/fr.png" alt="France" width="32" style="display:block;border-radius:3px;"></td>
+        <td><p style="margin:0;font-size:14px;font-weight:700;color:#101010;">France</p><p style="margin:2px 0 0;font-size:11px;color:#707482;">Reaches Semi-Final?</p></td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;"><tr>
+        <td width="61%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;">&nbsp;</td>
+        <td width="39%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;">&nbsp;</td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td><span style="font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES 61&cent;</span></td>
+        <td align="right"><span style="font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO 39&cent;</span></td>
+      </tr></table>
+    </td></tr></table>
+  </td>
+  <td width="48%" valign="top" style="padding-left:8px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+    <tr><td style="padding:20px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="padding-right:10px;"><img src="https://flagcdn.com/w40/br.png" alt="Brazil" width="32" style="display:block;border-radius:3px;"></td>
+        <td><p style="margin:0;font-size:14px;font-weight:700;color:#101010;">Brazil</p><p style="margin:2px 0 0;font-size:11px;color:#707482;">Reaches Semi-Final?</p></td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;"><tr>
+        <td width="54%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;">&nbsp;</td>
+        <td width="46%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;">&nbsp;</td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td><span style="font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES 54&cent;</span></td>
+        <td align="right"><span style="font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO 46&cent;</span></td>
+      </tr></table>
+    </td></tr></table>
+  </td>
+</tr></table>
+</td></tr>
+
+<!-- ROW 2 -->
+<tr><td style="background:#ffffff;padding:0 32px 14px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+  <td width="48%" valign="top" style="padding-right:8px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+    <tr><td style="padding:20px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="padding-right:10px;"><img src="https://flagcdn.com/w40/es.png" alt="Spain" width="32" style="display:block;border-radius:3px;"></td>
+        <td><p style="margin:0;font-size:14px;font-weight:700;color:#101010;">Spain</p><p style="margin:2px 0 0;font-size:11px;color:#707482;">Reaches Semi-Final?</p></td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;"><tr>
+        <td width="48%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;">&nbsp;</td>
+        <td width="52%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;">&nbsp;</td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td><span style="font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES 48&cent;</span></td>
+        <td align="right"><span style="font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO 52&cent;</span></td>
+      </tr></table>
+    </td></tr></table>
+  </td>
+  <td width="48%" valign="top" style="padding-left:8px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+    <tr><td style="padding:20px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="padding-right:10px;"><img src="https://flagcdn.com/w40/gb-eng.png" alt="England" width="32" style="display:block;border-radius:3px;"></td>
+        <td><p style="margin:0;font-size:14px;font-weight:700;color:#101010;">England</p><p style="margin:2px 0 0;font-size:11px;color:#707482;">Reaches Semi-Final?</p></td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;"><tr>
+        <td width="45%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;">&nbsp;</td>
+        <td width="55%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;">&nbsp;</td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td><span style="font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES 45&cent;</span></td>
+        <td align="right"><span style="font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO 55&cent;</span></td>
+      </tr></table>
+    </td></tr></table>
+  </td>
+</tr></table>
+</td></tr>
+
+<!-- ROW 3 -->
+<tr><td style="background:#ffffff;padding:0 32px 14px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+  <td width="48%" valign="top" style="padding-right:8px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+    <tr><td style="padding:20px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="padding-right:10px;"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina" width="32" style="display:block;border-radius:3px;"></td>
+        <td><p style="margin:0;font-size:14px;font-weight:700;color:#101010;">Argentina</p><p style="margin:2px 0 0;font-size:11px;color:#707482;">Reaches Semi-Final?</p></td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;"><tr>
+        <td width="44%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;">&nbsp;</td>
+        <td width="56%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;">&nbsp;</td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td><span style="font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES 44&cent;</span></td>
+        <td align="right"><span style="font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO 56&cent;</span></td>
+      </tr></table>
+    </td></tr></table>
+  </td>
+  <td width="48%" valign="top" style="padding-left:8px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+    <tr><td style="padding:20px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="padding-right:10px;"><img src="https://flagcdn.com/w40/de.png" alt="Germany" width="32" style="display:block;border-radius:3px;"></td>
+        <td><p style="margin:0;font-size:14px;font-weight:700;color:#101010;">Germany</p><p style="margin:2px 0 0;font-size:11px;color:#707482;">Reaches Semi-Final?</p></td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;"><tr>
+        <td width="38%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;">&nbsp;</td>
+        <td width="62%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;">&nbsp;</td>
+      </tr></table>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td><span style="font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES 38&cent;</span></td>
+        <td align="right"><span style="font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO 62&cent;</span></td>
+      </tr></table>
+    </td></tr></table>
+  </td>
+</tr></table>
+</td></tr>
+
+<!-- VIEW ALL -->
+<tr><td style="background:#ffffff;padding:4px 32px 40px;text-align:center;">
+  <a href="#" style="font-size:13px;font-weight:700;color:#fe990c;">View all semi-final markets &rarr;</a>
+</td></tr>
+
+<!-- COUNTDOWN -->
+<tr><td style="background:#ffffff;padding:0 32px 48px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #ebebeb;border-radius:20px;overflow:hidden;">
+  <tr><td style="padding:36px 32px;text-align:center;">
+    <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/fifa-crest.png" alt="FIFA" width="72" style="display:block;margin:0 auto 16px;">
+    <p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#707482;">SEMI-FINALS COUNTDOWN</p>
+    <h3 style="margin:0 0 24px;font-size:20px;font-weight:700;color:#101010;">The Last Four takes shape in...</h3>
+
+    <!-- LIVE JS COUNTDOWN -->
+    <div class="countdown-wrap">
+      <div class="countdown-timer">
+        <div class="cd-cell"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-cell"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Hrs</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-cell"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Mins</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-cell"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Secs</span></div>
+      </div>
+    </div>
+
+    <p style="margin:20px 0 0;font-size:12px;color:#707482;">First semi-final: July 14, 2026 &middot; MetLife Stadium, New Jersey</p>
+  </td></tr>
+  </table>
+</td></tr>
+
+<!-- ORANGE CTA -->
+<tr><td style="background:#fe990c;padding:40px 32px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+  <td width="58%" valign="middle" style="padding-right:16px;">
+    <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#101010;">YOUR EDGE</p>
+    <h2 style="margin:0 0 12px;font-size:28px;font-weight:700;line-height:1.15;color:#101010;">Your Football<br>Knowledge.<br>Your Profit.</h2>
+    <p style="margin:0 0 24px;font-size:14px;line-height:1.55;color:#101010;">Trade semi-final predictions from 1&cent;. Prices shift as the tournament unfolds &mdash; get in early.</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td style="background:#101010;border-radius:100px;padding:14px 28px;">
+        <a href="#" style="font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;display:block;">Start Predicting &rarr;</a>
+      </td>
+    </tr></table>
+  </td>
+  <td width="42%" valign="middle" align="right">
+    <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/cta-coins.png" alt="" width="160" style="display:block;width:160px;height:auto;margin:0 auto 16px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+      <td style="background:#ffffff;border-radius:8px;padding:8px;">
+        <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/qr.png" alt="Scan to download" width="72" style="display:block;">
+      </td>
+    </tr><tr>
+      <td style="padding-top:6px;text-align:center;"><p style="margin:0;font-size:10px;font-weight:700;color:#101010;text-transform:uppercase;letter-spacing:1px;">Scan to download</p></td>
+    </tr></table>
+  </td>
+</tr></table>
+</td></tr>
+
+<!-- FOOTER -->
+<tr><td style="background:#1a1a1a;padding:28px 32px;">
+  <div style="background:#202020;border-radius:12px;padding:20px;">
+    <p style="margin:0 0 8px;font-size:10px;line-height:1.6;color:rgba(255,255,255,0.35);">Cryptoassets are highly volatile. Your capital is at risk. Past performance is not a reliable indicator of future results.</p>
+    <p style="margin:0 0 8px;font-size:10px;line-height:1.6;color:rgba(255,255,255,0.35);">Zengo is a non-custodial wallet. You are solely responsible for safeguarding access to your assets.</p>
+    <p style="margin:0;font-size:10px;line-height:1.6;color:rgba(255,255,255,0.35);">Regulated by eToro (Europe) Ltd (CySEC), eToro (UK) Ltd (FCA), eToro AUS Capital Limited (ASIC). Subject to local regulation.</p>
+  </div>
+  <p style="margin:20px 0 0;font-size:11px;color:#707482;text-align:center;line-height:1.6;">
+    &copy; 2026 Zengo Ltd. &nbsp;
+    <a href="#" style="color:#707482;text-decoration:underline;">Unsubscribe</a> &middot;
+    <a href="#" style="color:#707482;text-decoration:underline;">Preferences</a>
+  </p>
+</td></tr>
+
+</table>
+</td></tr>
+</table>
+
+<script>
+  // Target: July 14, 2026 18:00 UTC (semi-final kickoff)
+  var target = new Date('2026-07-14T18:00:00Z').getTime();
+
+  function pad(n) { return n < 10 ? '0' + n : n; }
+
+  function tick() {
+    var now  = Date.now();
+    var diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent  = '00';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent  = '00';
+      document.getElementById('cd-secs').textContent  = '00';
+      return;
+    }
+    var days  = Math.floor(diff / 86400000);
+    var hours = Math.floor((diff % 86400000) / 3600000);
+    var mins  = Math.floor((diff % 3600000)  / 60000);
+    var secs  = Math.floor((diff % 60000)    / 1000);
+    document.getElementById('cd-days').textContent  = pad(days);
+    document.getElementById('cd-hours').textContent = pad(hours);
+    document.getElementById('cd-mins').textContent  = pad(mins);
+    document.getElementById('cd-secs').textContent  = pad(secs);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
