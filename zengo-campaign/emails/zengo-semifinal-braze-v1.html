@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<!--
+  CAMPAIGN: Zengo_FIFA_WorldCup2026_SemiFinal_EN_v1
+  PLATFORM: Braze (Liquid) — NOT SFMC
+  SUBJECT:  Who makes the Last Four? Your call starts at 1¢
+  PREVIEW:  Four spots. Six contenders. Back your pick before the markets move.
+  AUDIENCE: Zengo verified users, all active subscribers
+  SEND:     Manual campaign or Canvas step — trigger before semi-final markets peak
+  UPDATED:  2026-06-07
+-->
+
+{% comment %}
+  ── CAMPAIGN VARIABLES ─────────────────────────────────────────────────────
+  Hardcoded odds below. To make live, uncomment the Connected Content block.
+
+  CONNECTED CONTENT (uncomment when Zengo API is ready):
+  {% connected_content https://api.zengo.com/markets/semifinal-odds
+     :save markets
+     :headers {"Authorization": "Bearer YOUR_TOKEN"}
+     :cache_max_age 300 %}
+  Then replace YES/NO values with: {{markets.france_yes}}  etc.
+  ───────────────────────────────────────────────────────────────────────────
+{% endcomment %}
+
+{% comment %} Market odds — update before each send {% endcomment %}
+{% assign fr_yes = 61 %}{% assign fr_no = 39 %}
+{% assign br_yes = 54 %}{% assign br_no = 46 %}
+{% assign es_yes = 48 %}{% assign es_no = 52 %}
+{% assign en_yes = 45 %}{% assign en_no = 55 %}
+{% assign ar_yes = 44 %}{% assign ar_no = 56 %}
+{% assign de_yes = 38 %}{% assign de_no = 62 %}
+
+{% comment %} Dynamic countdown to July 14, 2026 semi-final {% endcomment %}
+{% assign semi_ts   = 1752451200 %}
+{% assign now_ts    = 'now' | date: '%s' | plus: 0 %}
+{% assign diff_secs = semi_ts | minus: now_ts %}
+{% assign days_left  = diff_secs | divided_by: 86400 | floor %}
+{% assign hours_left = diff_secs | modulo: 86400 | divided_by: 3600 | floor %}
+{% assign mins_left  = diff_secs | modulo: 3600 | divided_by: 60 | floor %}
+
+<html lang="{% if ${language} == 'fr' %}fr{% elsif ${language} == 'de' %}de{% elsif ${language} == 'es' %}es{% elsif ${language} == 'it' %}it{% elsif ${language} == 'ar' %}ar{% else %}en{% endif %}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>
+    {% if ${language} == 'fr' %}Qui sera dans le dernier carré ? | Zengo
+    {% elsif ${language} == 'de' %}Wer kommt ins Halbfinale? | Zengo
+    {% elsif ${language} == 'es' %}¿Quién llega a las semifinales? | Zengo
+    {% elsif ${language} == 'it' %}Chi arriva in semifinale? | Zengo
+    {% else %}Who Makes the Last Four? | Zengo
+    {% endif %}
+  </title>
+  <style>
+    body { margin:0; padding:0; background:#101010; font-family:Verdana,Geneva,sans-serif; }
+    table { border-collapse:collapse; }
+    img { border:0; outline:none; text-decoration:none; }
+    a { color:#fe990c; text-decoration:none; }
+    @media only screen and (max-width:600px) {
+      .email-wrapper  { width:100% !important; }
+      .mobile-full    { width:100% !important; display:block !important; }
+      .mobile-padding { padding-left:16px !important; padding-right:16px !important; }
+      .team-card      { width:100% !important; display:block !important; padding:0 0 12px !important; }
+      .cta-copy       { width:100% !important; display:block !important; padding-right:0 !important; }
+      .cta-visual     { width:100% !important; display:block !important; text-align:center !important; padding-top:24px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#101010;">
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#101010;">
+  <tr>
+    <td align="center">
+      <table role="presentation" class="email-wrapper" width="640" cellpadding="0" cellspacing="0" border="0" style="max-width:640px;width:100%;">
+
+        <!-- ══════════════════════ PREHEADER ══════════════════════ -->
+        <tr>
+          <td style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#101010;">
+            {% if ${language} == 'fr' %}Quatre places. Plusieurs prétendants. Prédisez qui atteint les demi-finales.
+            {% elsif ${language} == 'de' %}Vier Plätze. Mehrere Anwärter. Tippe, wer ins Halbfinale kommt.
+            {% elsif ${language} == 'es' %}Cuatro plazas. Varios aspirantes. Predice quién llega a las semifinales.
+            {% elsif ${language} == 'it' %}Quattro posti. Tanti pretendenti. Prevedi chi arriva in semifinale.
+            {% else %}Four spots. Six contenders. Back your pick before the markets move.
+            {% endif %}
+            &nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;&nbsp;&#8203;
+          </td>
+        </tr>
+
+        <!-- ══════════════════════ LOGO HEADER — dark ══════════════════════ -->
+        <tr>
+          <td style="background:#101010;padding:24px 32px 16px;">
+            <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/zengo-wordmark-white.png"
+                 alt="Zengo" width="120"
+                 style="display:block;width:120px;height:auto;">
+          </td>
+        </tr>
+
+        <!-- ══════════════════════ HERO — dark ══════════════════════ -->
+        <tr>
+          <td style="background:#101010;padding:8px 32px 40px;">
+
+            <!-- Eyebrow -->
+            <p style="margin:0 0 14px;font-family:Verdana,Geneva,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fe990c;">
+              <span style="display:inline-block;width:6px;height:6px;background:#fe990c;border-radius:50%;vertical-align:middle;margin-right:8px;"></span>
+              FIFA WORLD CUP 2026 &middot; LIVE MARKETS
+            </p>
+
+            <!-- Headline — multi-language -->
+            <h1 style="margin:0 0 16px;font-family:Verdana,Geneva,sans-serif;font-size:38px;font-weight:700;line-height:1.1;color:#ffffff;">
+              {% if ${language} == 'fr' %}Qui sera dans<br>le dernier carré&nbsp;?
+              {% elsif ${language} == 'de' %}Wer kommt<br>ins Halbfinale?
+              {% elsif ${language} == 'es' %}¿Quién llega<br>a las semifinales?
+              {% elsif ${language} == 'it' %}Chi arriva<br>in semifinale?
+              {% else %}Who Makes<br>the Last Four?
+              {% endif %}
+            </h1>
+
+            <!-- Sub-copy with name personalisation -->
+            <p style="margin:0 0 28px;font-family:Verdana,Geneva,sans-serif;font-size:15px;line-height:1.65;color:#a7aab3;">
+              {% if ${language} == 'fr' %}
+                {{${first_name} | default: ''}}{%if ${first_name} %}, six{% else %}Six{% endif %} nations. Quatre places. Prédisez quelles équipes atteignent les demi-finales 2026
+                — achetez <strong style="color:#00cecb;">Oui</strong> ou <strong style="color:#ff5e5b;">Non</strong> dès 1&cent;.
+              {% elsif ${language} == 'de' %}
+                {{${first_name} | default: ''}}{%if ${first_name} %}, sechs{% else %}Sechs{% endif %} Nationen. Vier Plätze. Sage voraus, welche Teams ins Halbfinale 2026 kommen
+                — kaufe <strong style="color:#00cecb;">Ja</strong> oder <strong style="color:#ff5e5b;">Nein</strong> ab 1&cent;.
+              {% elsif ${language} == 'es' %}
+                {{${first_name} | default: ''}}{%if ${first_name} %}, seis{% else %}Seis{% endif %} naciones. Cuatro plazas. Predice qué equipos llegan a las semifinales 2026
+                — compra <strong style="color:#00cecb;">Sí</strong> o <strong style="color:#ff5e5b;">No</strong> desde 1&cent;.
+              {% elsif ${language} == 'it' %}
+                {{${first_name} | default: ''}}{%if ${first_name} %}, sei{% else %}Sei{% endif %} nazioni. Quattro posti. Prevedi quali squadre arrivano in semifinale 2026
+                — compra <strong style="color:#00cecb;">Sì</strong> o <strong style="color:#ff5e5b;">No</strong> da 1&cent;.
+              {% else %}
+                {% if ${first_name} %}{{${first_name}}}, six{% else %}Six{% endif %} nations. Four spots. Predict which teams reach the 2026 World Cup semi-finals
+                — buy <strong style="color:#00cecb;">Yes</strong> or <strong style="color:#ff5e5b;">No</strong> for as little as 1&cent;.
+              {% endif %}
+            </p>
+
+            <!-- Primary CTA -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background:#fe990c;border-radius:100px;padding:14px 32px;">
+                  <a href="https://zengo.com/markets/football"
+                     style="font-family:Verdana,Geneva,sans-serif;font-size:15px;font-weight:700;color:#101010;text-decoration:none;display:block;white-space:nowrap;">
+                    {% if ${language} == 'fr' %}Prédire maintenant &rarr;
+                    {% elsif ${language} == 'de' %}Jetzt tippen &rarr;
+                    {% elsif ${language} == 'es' %}Predecir ahora &rarr;
+                    {% elsif ${language} == 'it' %}Prevedi ora &rarr;
+                    {% else %}Predict Now &rarr;
+                    {% endif %}
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- ══════════════════════ STATS BAR — dark ══════════════════════ -->
+        <tr>
+          <td style="background:#101010;padding:0 32px 40px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#202020;border-radius:12px;">
+              <tr>
+                <td width="33%" style="padding:20px 16px;text-align:center;border-right:1px solid #2f3436;">
+                  <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:22px;font-weight:700;color:#ffffff;">48</p>
+                  <p style="margin:5px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;text-transform:uppercase;letter-spacing:1px;">Nations</p>
+                </td>
+                <td width="33%" style="padding:20px 16px;text-align:center;border-right:1px solid #2f3436;">
+                  <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:22px;font-weight:700;color:#ffffff;">$4.2B+</p>
+                  <p style="margin:5px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;text-transform:uppercase;letter-spacing:1px;">Volume</p>
+                </td>
+                <td width="33%" style="padding:20px 16px;text-align:center;">
+                  <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:22px;font-weight:700;color:#ffffff;">1&cent;</p>
+                  <p style="margin:5px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;text-transform:uppercase;letter-spacing:1px;">Min. Trade</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ══════════════════════ MARKETS SECTION — white ══════════════════════ -->
+        <tr>
+          <td style="background:#ffffff;padding:40px 32px 20px;">
+            <p style="margin:0 0 6px;font-family:Verdana,Geneva,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fe990c;">
+              <span style="display:inline-block;width:6px;height:6px;background:#fe990c;border-radius:50%;vertical-align:middle;margin-right:8px;"></span>
+              LIVE MARKETS
+            </p>
+            <h2 style="margin:0 0 4px;font-family:Verdana,Geneva,sans-serif;font-size:24px;font-weight:700;color:#101010;">
+              {% if ${language} == 'fr' %}Choisissez vos demi-finalistes
+              {% elsif ${language} == 'de' %}Wähle deine Halbfinalisten
+              {% elsif ${language} == 'es' %}Elige tus semifinalistas
+              {% elsif ${language} == 'it' %}Scegli i tuoi semifinalisti
+              {% else %}Pick Your Semifinalists
+              {% endif %}
+            </h2>
+            <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:13px;color:#707482;">
+              {% if ${language} == 'fr' %}Chaque marché paie 1$ par action gagnante. Les prix reflètent les cotes en temps réel.
+              {% elsif ${language} == 'de' %}Jeder Markt zahlt $1 pro Gewinnanteil. Preise spiegeln Live-Quoten wider.
+              {% elsif ${language} == 'es' %}Cada mercado paga $1 por acción ganadora. Los precios reflejan las cuotas en vivo.
+              {% elsif ${language} == 'it' %}Ogni mercato paga $1 per quota vincente. I prezzi riflettono le quote in tempo reale.
+              {% else %}Each market pays $1 per winning share. Prices reflect live market odds.
+              {% endif %}
+            </p>
+          </td>
+        </tr>
+
+        <!-- ─── ROW 1: France + Brazil ─── -->
+        <tr>
+          <td style="background:#ffffff;padding:0 32px 14px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+
+                <!-- FRANCE -->
+                <td class="team-card" width="48%" valign="top" style="padding-right:8px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                         style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+                    <tr>
+                      <td style="padding:20px;">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td style="padding-right:10px;">
+                              <img src="https://flagcdn.com/w40/fr.png" alt="France" width="32"
+                                   style="display:block;border-radius:3px;width:32px;height:auto;">
+                            </td>
+                            <td>
+                              <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:14px;font-weight:700;color:#101010;">France</p>
+                              <p style="margin:2px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;">Reaches Semi-Final?</p>
+                            </td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;">
+                          <tr>
+                            <td width="{{fr_yes}}%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;line-height:0;">&nbsp;</td>
+                            <td width="{{fr_no}}%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;line-height:0;">&nbsp;</td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES {{fr_yes}}&cent;</span></td>
+                            <td align="right"><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO {{fr_no}}&cent;</span></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+
+                <!-- BRAZIL -->
+                <td class="team-card" width="48%" valign="top" style="padding-left:8px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                         style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+                    <tr>
+                      <td style="padding:20px;">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td style="padding-right:10px;">
+                              <img src="https://flagcdn.com/w40/br.png" alt="Brazil" width="32"
+                                   style="display:block;border-radius:3px;width:32px;height:auto;">
+                            </td>
+                            <td>
+                              <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:14px;font-weight:700;color:#101010;">Brazil</p>
+                              <p style="margin:2px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;">Reaches Semi-Final?</p>
+                            </td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;">
+                          <tr>
+                            <td width="{{br_yes}}%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;line-height:0;">&nbsp;</td>
+                            <td width="{{br_no}}%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;line-height:0;">&nbsp;</td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES {{br_yes}}&cent;</span></td>
+                            <td align="right"><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO {{br_no}}&cent;</span></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ─── ROW 2: Spain + England ─── -->
+        <tr>
+          <td style="background:#ffffff;padding:0 32px 14px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+
+                <!-- SPAIN -->
+                <td class="team-card" width="48%" valign="top" style="padding-right:8px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                         style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+                    <tr>
+                      <td style="padding:20px;">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td style="padding-right:10px;">
+                              <img src="https://flagcdn.com/w40/es.png" alt="Spain" width="32"
+                                   style="display:block;border-radius:3px;width:32px;height:auto;">
+                            </td>
+                            <td>
+                              <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:14px;font-weight:700;color:#101010;">Spain</p>
+                              <p style="margin:2px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;">Reaches Semi-Final?</p>
+                            </td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;">
+                          <tr>
+                            <td width="{{es_yes}}%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;line-height:0;">&nbsp;</td>
+                            <td width="{{es_no}}%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;line-height:0;">&nbsp;</td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES {{es_yes}}&cent;</span></td>
+                            <td align="right"><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO {{es_no}}&cent;</span></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+
+                <!-- ENGLAND -->
+                <td class="team-card" width="48%" valign="top" style="padding-left:8px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                         style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+                    <tr>
+                      <td style="padding:20px;">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td style="padding-right:10px;">
+                              <img src="https://flagcdn.com/w40/gb-eng.png" alt="England" width="32"
+                                   style="display:block;border-radius:3px;width:32px;height:auto;">
+                            </td>
+                            <td>
+                              <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:14px;font-weight:700;color:#101010;">England</p>
+                              <p style="margin:2px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;">Reaches Semi-Final?</p>
+                            </td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;">
+                          <tr>
+                            <td width="{{en_yes}}%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;line-height:0;">&nbsp;</td>
+                            <td width="{{en_no}}%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;line-height:0;">&nbsp;</td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES {{en_yes}}&cent;</span></td>
+                            <td align="right"><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO {{en_no}}&cent;</span></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ─── ROW 3: Argentina + Germany ─── -->
+        <tr>
+          <td style="background:#ffffff;padding:0 32px 14px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+
+                <!-- ARGENTINA -->
+                <td class="team-card" width="48%" valign="top" style="padding-right:8px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                         style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+                    <tr>
+                      <td style="padding:20px;">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td style="padding-right:10px;">
+                              <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" width="32"
+                                   style="display:block;border-radius:3px;width:32px;height:auto;">
+                            </td>
+                            <td>
+                              <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:14px;font-weight:700;color:#101010;">Argentina</p>
+                              <p style="margin:2px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;">Reaches Semi-Final?</p>
+                            </td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;">
+                          <tr>
+                            <td width="{{ar_yes}}%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;line-height:0;">&nbsp;</td>
+                            <td width="{{ar_no}}%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;line-height:0;">&nbsp;</td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES {{ar_yes}}&cent;</span></td>
+                            <td align="right"><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO {{ar_no}}&cent;</span></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+
+                <!-- GERMANY -->
+                <td class="team-card" width="48%" valign="top" style="padding-left:8px;">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                         style="background:#f7f7f7;border-radius:16px;border:1px solid #ebebeb;">
+                    <tr>
+                      <td style="padding:20px;">
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td style="padding-right:10px;">
+                              <img src="https://flagcdn.com/w40/de.png" alt="Germany" width="32"
+                                   style="display:block;border-radius:3px;width:32px;height:auto;">
+                            </td>
+                            <td>
+                              <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:14px;font-weight:700;color:#101010;">Germany</p>
+                              <p style="margin:2px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;">Reaches Semi-Final?</p>
+                            </td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 10px;">
+                          <tr>
+                            <td width="{{de_yes}}%" style="height:6px;background:#00cecb;border-radius:3px 0 0 3px;font-size:0;line-height:0;">&nbsp;</td>
+                            <td width="{{de_no}}%" style="height:6px;background:#ff5e5b;border-radius:0 3px 3px 0;font-size:0;line-height:0;">&nbsp;</td>
+                          </tr>
+                        </table>
+                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                          <tr>
+                            <td><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#00cecb;background:#e6faf9;border-radius:6px;padding:4px 8px;display:inline-block;">YES {{de_yes}}&cent;</span></td>
+                            <td align="right"><span style="font-family:Verdana,Geneva,sans-serif;font-size:12px;font-weight:700;color:#ff5e5b;background:#fff0ef;border-radius:6px;padding:4px 8px;display:inline-block;">NO {{de_no}}&cent;</span></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- View all link -->
+        <tr>
+          <td style="background:#ffffff;padding:4px 32px 40px;text-align:center;">
+            <a href="https://zengo.com/markets/football"
+               style="font-family:Verdana,Geneva,sans-serif;font-size:13px;font-weight:700;color:#fe990c;text-decoration:none;">
+              {% if ${language} == 'fr' %}Voir tous les marchés de demi-finale &rarr;
+              {% elsif ${language} == 'de' %}Alle Halbfinalm&#228;rkte anzeigen &rarr;
+              {% elsif ${language} == 'es' %}Ver todos los mercados de semifinal &rarr;
+              {% elsif ${language} == 'it' %}Vedi tutti i mercati delle semifinali &rarr;
+              {% else %}View all semi-final markets &rarr;
+              {% endif %}
+            </a>
+          </td>
+        </tr>
+
+        <!-- ══════════════════════ COUNTDOWN — white ══════════════════════ -->
+        <tr>
+          <td style="background:#ffffff;padding:0 32px 48px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                   style="border:1px solid #ebebeb;border-radius:20px;padding:36px 32px;text-align:center;">
+              <tr>
+                <td>
+                  <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/fifa-crest.png"
+                       alt="FIFA World Cup 2026" width="80"
+                       style="display:block;width:80px;height:auto;margin:0 auto 16px;">
+
+                  <p style="margin:0 0 6px;font-family:Verdana,Geneva,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#707482;">
+                    SEMI-FINALS COUNTDOWN
+                  </p>
+                  <h3 style="margin:0 0 24px;font-family:Verdana,Geneva,sans-serif;font-size:20px;font-weight:700;color:#101010;">
+                    {% if ${language} == 'fr' %}Le dernier carré se dessine dans...
+                    {% elsif ${language} == 'de' %}Das Halbfinale beginnt in...
+                    {% elsif ${language} == 'es' %}Las semifinales empiezan en...
+                    {% elsif ${language} == 'it' %}Le semifinali iniziano tra...
+                    {% else %}The Last Four takes shape in...
+                    {% endif %}
+                  </h3>
+
+                  <!-- Dynamic countdown -->
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
+                    <tr>
+                      <td style="background:#ebe8e5;border-radius:10px;padding:14px 18px;text-align:center;min-width:54px;">
+                        <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:26px;font-weight:700;color:#101010;">{{days_left}}</p>
+                        <p style="margin:5px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:10px;color:#707482;text-transform:uppercase;letter-spacing:1px;">Days</p>
+                      </td>
+                      <td style="padding:0 8px;font-family:Verdana,Geneva,sans-serif;font-size:26px;font-weight:700;color:#101010;">:</td>
+                      <td style="background:#ebe8e5;border-radius:10px;padding:14px 18px;text-align:center;min-width:54px;">
+                        <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:26px;font-weight:700;color:#101010;">{{hours_left}}</p>
+                        <p style="margin:5px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:10px;color:#707482;text-transform:uppercase;letter-spacing:1px;">Hrs</p>
+                      </td>
+                      <td style="padding:0 8px;font-family:Verdana,Geneva,sans-serif;font-size:26px;font-weight:700;color:#101010;">:</td>
+                      <td style="background:#ebe8e5;border-radius:10px;padding:14px 18px;text-align:center;min-width:54px;">
+                        <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:26px;font-weight:700;color:#101010;">{{mins_left}}</p>
+                        <p style="margin:5px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:10px;color:#707482;text-transform:uppercase;letter-spacing:1px;">Mins</p>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <p style="margin:20px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:12px;color:#707482;">
+                    First semi-final: July 14, 2026 &middot; MetLife Stadium, New Jersey
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ══════════════════════ ORANGE CTA SECTION ══════════════════════ -->
+        <tr>
+          <td style="background:#fe990c;padding:40px 32px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <!-- Copy -->
+                <td class="cta-copy" width="58%" valign="middle" style="padding-right:16px;">
+                  <p style="margin:0 0 8px;font-family:Verdana,Geneva,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#101010;">YOUR EDGE</p>
+                  <h2 style="margin:0 0 12px;font-family:Verdana,Geneva,sans-serif;font-size:28px;font-weight:700;line-height:1.15;color:#101010;">
+                    {% if ${language} == 'fr' %}Votre connaissance du foot.<br>Votre profit.
+                    {% elsif ${language} == 'de' %}Dein Fußballwissen.<br>Dein Gewinn.
+                    {% elsif ${language} == 'es' %}Tu conocimiento del fútbol.<br>Tu beneficio.
+                    {% elsif ${language} == 'it' %}La tua conoscenza del calcio.<br>Il tuo profitto.
+                    {% else %}Your Football<br>Knowledge.<br>Your Profit.
+                    {% endif %}
+                  </h2>
+                  <p style="margin:0 0 24px;font-family:Verdana,Geneva,sans-serif;font-size:14px;line-height:1.55;color:#101010;">
+                    {% if ${language} == 'fr' %}Tradez vos pronostics de demi-finale dès 1&cent;. Les prix bougent avec le tournoi — entrez tôt.
+                    {% elsif ${language} == 'de' %}Handle Halbfinal-Prognosen ab 1&cent;. Preise bewegen sich mit dem Turnier — früh einsteigen.
+                    {% elsif ${language} == 'es' %}Opera predicciones de semifinal desde 1&cent;. Los precios cambian con el torneo — entra pronto.
+                    {% elsif ${language} == 'it' %}Fai trading sulle previsioni delle semifinali da 1&cent;. I prezzi cambiano col torneo — entra prima.
+                    {% else %}Trade semi-final predictions from 1&cent;. Prices shift as the tournament unfolds — get in early.
+                    {% endif %}
+                  </p>
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                      <td style="background:#101010;border-radius:100px;padding:14px 28px;">
+                        <a href="https://zengo.com/markets/football"
+                           style="font-family:Verdana,Geneva,sans-serif;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;display:block;white-space:nowrap;">
+                          {% if ${language} == 'fr' %}Commencer &rarr;
+                          {% elsif ${language} == 'de' %}Jetzt starten &rarr;
+                          {% elsif ${language} == 'es' %}Empezar &rarr;
+                          {% elsif ${language} == 'it' %}Inizia &rarr;
+                          {% else %}Start Predicting &rarr;
+                          {% endif %}
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+
+                <!-- Coins + QR -->
+                <td class="cta-visual" width="42%" valign="middle" align="right">
+                  <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/cta-coins.png"
+                       alt="" width="160"
+                       style="display:block;width:160px;height:auto;margin:0 auto 16px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
+                    <tr>
+                      <td style="background:#ffffff;border-radius:8px;padding:8px;">
+                        <img src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/qr.png"
+                             alt="Scan to download Zengo" width="72"
+                             style="display:block;width:72px;height:auto;">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-top:6px;text-align:center;">
+                        <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:10px;font-weight:700;color:#101010;text-transform:uppercase;letter-spacing:1px;">Scan to download</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ══════════════════════ DISCLAIMER + FOOTER ══════════════════════ -->
+        <tr>
+          <td style="background:#1a1a1a;padding:28px 32px;">
+            <div style="background:#202020;border-radius:12px;padding:20px;">
+              <p style="margin:0 0 8px;font-family:Verdana,Geneva,sans-serif;font-size:10px;line-height:1.6;color:rgba(255,255,255,0.35);">
+                Cryptoassets are highly volatile. Your capital is at risk. The value of your position may go down as well as up and you may receive back less than you invest. Past performance is not a reliable indicator of future results.
+              </p>
+              <p style="margin:0 0 8px;font-family:Verdana,Geneva,sans-serif;font-size:10px;line-height:1.6;color:rgba(255,255,255,0.35);">
+                Zengo is a non-custodial wallet. You are solely responsible for safeguarding access to your assets. Zengo Ltd does not hold, custody, or control your funds.
+              </p>
+              <p style="margin:0;font-family:Verdana,Geneva,sans-serif;font-size:10px;line-height:1.6;color:rgba(255,255,255,0.35);">
+                Regulated services provided by eToro (Europe) Ltd (CySEC), eToro (UK) Ltd (FCA), and eToro AUS Capital Limited (ASIC). Zengo markets may not be available in all regions. Subject to local regulation.
+              </p>
+            </div>
+            <p style="margin:20px 0 0;font-family:Verdana,Geneva,sans-serif;font-size:11px;color:#707482;text-align:center;line-height:1.6;">
+              &copy; 2026 Zengo Ltd. All rights reserved.&nbsp;&nbsp;
+              <a href="{{${set_user_to_unsubscribed_url}}}" style="color:#707482;text-decoration:underline;">Unsubscribe</a>
+              &nbsp;&middot;&nbsp;
+              <a href="{{${preference_center_url}}}" style="color:#707482;text-decoration:underline;">Preferences</a>
+            </p>
+          </td>
+        </tr>
+
+      </table><!-- /email-wrapper -->
+    </td>
+  </tr>
+</table>
+
+<!-- REQUIRED: Braze compliance footer — must be last element -->
+{{${email_footer}}}
+
+</body>
+</html>
