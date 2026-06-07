@@ -1,17 +1,104 @@
 ---
 name: zengo-image-background
-description: Extends zengo-campaign for SFMC emails that use a photo or app screenshot as the primary hero visual. Activate when an image is designated as the email hero/header, or when the campaign brief calls for a lifestyle photo, app screenshot, or image-background hero block. Always combine with zengo-campaign for design tokens and SFMC rules.
+description: >
+  Build Zengo emails where a full-bleed App Store / Play Store image IS the hero background.
+  Braze emails use CSS background-image + VML Outlook fallback. SFMC emails use a <div> overlay.
+  Activate when brief says "image as background", "hero image", "app store hero", or a Figma
+  App Store screenshot is the primary visual. Platform split: Zengo = Braze ONLY. Never use
+  SFMC for Zengo campaigns.
 ---
 
 # Zengo Image-Background Hero Skill
 
-This skill extends `zengo-campaign` for SFMC emails featuring a photo or app screenshot as the primary hero visual.
+Builds Zengo emails where a photo or App Store screenshot IS the full-bleed hero background.
+
+> **Platform split: Zengo = Braze ONLY. Regular eToro = SFMC ONLY. Never mix.**
+
+---
+
+## Braze: Full-Bleed Background Image Pattern
+
+Complete reference email: `zengo-campaign/emails/zengo-welcome-appstore-braze-v1.html`
+
+### Layer 1 — CSS (Gmail, Apple Mail, iOS, Android)
+```html
+<div style="
+  background-image:
+    linear-gradient(to bottom, rgba(10,10,10,0.30) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.92) 100%),
+    url('https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/YOUR-IMAGE.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-color: #101010;
+  min-height: 580px;
+">...</div>
+```
+
+### Layer 2 — VML (Outlook — required)
+```html
+<!--[if gte mso 9]>
+<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false"
+        style="width:600px;height:580px;display:block;">
+  <v:fill type="frame"
+          src="https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/YOUR-IMAGE.jpg"
+          color="#101010"/>
+  <v:textbox inset="0,0,0,0" style="mso-fit-shape-to-text:true;">
+<![endif]-->
+<!-- content visible in BOTH CSS and VML clients -->
+<!--[if gte mso 9]></v:textbox></v:rect><![endif]-->
+```
+
+**Always stack gradient ON TOP of image** (gradient listed first in `background-image`).
+
+### Gradient formula
+| Image type | Gradient |
+|---|---|
+| Dark image, text at bottom | `rgba(10,10,10,0.30) → rgba(10,10,10,0.92)` |
+| Light image | Add +0.15 to all opacity values |
+| Text in center | Flat `rgba(10,10,10,0.55)` across all stops |
+
+### Hero copy template
+```
+EYEBROW (orange #fe990c, 11px, caps, 0.14em spacing)  →  Welcome to Zengo
+HEADLINE (white, 44px, 900 weight, line-break at 3-4 words)  →  Predict on what / you believe.
+SUB-COPY (rgba(255,255,255,0.88), 17px)  →  {{first_name}}, the markets are waiting for you.
+CTA (orange pill, border-radius:100px, padding:16px 44px)  →  Start Predicting
+```
+
+---
+
+## App Store Images in Figma → Braze Email Hero
+
+**Figma file:** `KiJ4p9z24Wu1enW0yUfQA9` · **Node:** `78:119239`
+
+| Image | Theme | Email use |
+|---|---|---|
+| "One crypto wallet. Every market." | Hand + phone, dark | Product intro |
+| **"Predict on what you believe."** | Dark moody portrait | **Welcome (zengo-welcome-appstore-braze-v1.html)** |
+| "Buy and sell in seconds." | Outdoor + $$$ amounts | Activation |
+| "Swap anything, instantly." | Dark outdoor | Feature email |
+| "Never lose your crypto ever again." | Security theme | Trust/retention |
+| "Real humans. Any hour." | Indoor portrait | Support email |
+
+Export: Select frame → JPG 2× → upload to S3 at `etoro-production/e-marketing/MarketingAutomation/Zengo/`
+
+---
+
+## Image technical requirements
+
+| Spec | Value |
+|---|---|
+| Format | JPG (photos) / PNG (UI/graphics) |
+| Width | 1200px (renders 600px at 2× retina) |
+| Height | 1160px+ (580px hero at 2×) |
+| Subject safe zone | Center 60% of frame |
+| Max file size | 200KB |
+
+---
 
 ## When to activate
-- The brief says "use this image for the hero" or "image as background"
-- The campaign uses a lifestyle photo hero (man/woman with phone)
-- The brief calls for a photo-forward or editorial email layout
-- An app screenshot is the primary hero visual
+- Brief says "image as background", "hero background", "app store style"
+- A Figma App Store / Play Store screenshot is the primary visual
+- Campaign is photo-forward or editorial in feel
 
 ---
 
