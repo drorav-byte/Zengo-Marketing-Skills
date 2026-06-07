@@ -1,11 +1,21 @@
 ---
 name: zengo-campaign
-description: Production-ready Zengo prediction markets email system for SFMC. Covers design tokens, section layout, component library, SFMC setup, and naming rules. Always combine with zengo-launch-kit for campaign copy and etoro-email-builder for SFMC delivery rules.
+description: Production-ready Zengo prediction markets email system for Braze. Covers design tokens, section layout, component library, Braze/Liquid setup, and naming rules. Always combine with zengo-launch-kit for campaign copy. For Braze code patterns use zengo-braze-patterns.md. IMPORTANT: Zengo uses Braze (NOT SFMC/AMPScript). Use Liquid for personalization, Connected Content for live market data, Canvas for lifecycle flows.
 ---
 
 # Zengo Campaign Skill
 
-This skill enables production-ready Zengo marketing campaign emails using correct SFMC architecture and Zengo's landing page design language. It applies to acquisition, onboarding, event, and reactivation Zengo campaign emails.
+This skill enables production-ready Zengo marketing campaign emails using **Braze** and Zengo's design language.
+It applies to acquisition, onboarding, event, and reactivation Zengo campaign emails.
+
+> ⚠️ **Platform: Braze — not SFMC.**
+> Zengo (acquired by eToro) uses Braze as its marketing platform.
+> - Use **Liquid** for personalization (not AMPScript)
+> - Use **Connected Content** for live market data (not HTTPGet)
+> - Use **Canvas** for lifecycle journeys (not Journey Builder)
+> - Use **full HTML documents** (no `<!--newSTR-->` content-block-only pattern)
+> - Use **`{{${email_footer}}}`** instead of SFMC subscription center tags
+> - See `references/zengo-braze-patterns.md` for all code patterns
 
 ## Design System Source
 All design tokens derive from the Zengo landing page (v4 and above), **not** eToro's DarkBlueGreen theme.
