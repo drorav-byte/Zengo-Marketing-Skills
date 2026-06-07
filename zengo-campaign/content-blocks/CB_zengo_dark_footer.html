@@ -1,0 +1,45 @@
+<!-- ============================================================
+     CONTENT BLOCK: zengo_dark_footer
+     Usage: {{content_blocks.${zengo_dark_footer}}}
+     Place BEFORE {{${email_footer}}} at the bottom of every email.
+     Contains: disclaimers + unsubscribe + preferences
+     ============================================================ -->
+
+<!-- Disclaimer block -->
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#101010;">
+  <tr>
+    <td style="padding:32px 24px 12px;">
+      <div style="background-color:#1a1a1a; border-radius:12px; padding:20px 20px; max-width:560px; margin:0 auto;">
+        <p style="font-family:Verdana,sans-serif; font-size:10px; line-height:1.6; color:rgba(255,255,255,0.35); margin:0 0 8px;">
+          Cryptoassets are highly volatile. Your capital is at risk. The value of your position may go down as well as up and you may receive back less than you invest. Past performance is not a reliable indicator of future results.
+        </p>
+        <p style="font-family:Verdana,sans-serif; font-size:10px; line-height:1.6; color:rgba(255,255,255,0.35); margin:0 0 8px;">
+          Zengo is a non-custodial wallet. You are solely responsible for safeguarding access to your assets. Zengo Ltd does not hold, custody, or control your funds.
+        </p>
+        <p style="font-family:Verdana,sans-serif; font-size:10px; line-height:1.6; color:rgba(255,255,255,0.35); margin:0;">
+          Regulated services provided by eToro (Europe) Ltd (CySEC), eToro (UK) Ltd (FCA), and eToro AUS Capital Limited (ASIC). Zengo markets may not be available in all regions. Subject to local regulation.
+        </p>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<!-- Unsubscribe row -->
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#101010;">
+  <tr>
+    <td align="center" style="padding:16px 24px 32px;">
+      <p style="font-family:Verdana,sans-serif; font-size:11px; color:#707482; margin:0; line-height:1.6;">
+        You're receiving this because you're a Zengo user.&nbsp;&nbsp;
+        <a href="{{${set_user_to_unsubscribed_url}}}" style="color:#707482; text-decoration:underline;">Unsubscribe</a>
+        &nbsp;&nbsp;·&nbsp;&nbsp;
+        <a href="{{${preference_center_url}}}" style="color:#707482; text-decoration:underline;">Email Preferences</a>
+      </p>
+      <p style="font-family:Verdana,sans-serif; font-size:11px; color:#444752; margin:8px 0 0; line-height:1.6;">
+        © 2026 Zengo Ltd. All rights reserved.
+      </p>
+    </td>
+  </tr>
+</table>
+
+<!-- Braze required footer — always last -->
+{{${email_footer}}}
