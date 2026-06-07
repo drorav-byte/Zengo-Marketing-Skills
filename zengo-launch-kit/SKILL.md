@@ -1,14 +1,9 @@
 ---
 name: zengo-launch-kit
-description: >
-  Campaign copy, creative specs, and channel briefs for the Zengo Predictions launch. Sourced from Launch_Kit_V6. Contains ready-to-use social copy (X/Twitter, Facebook, Instagram, LinkedIn), in-app messaging specs (Braze modal, popup, push, content card), and email campaign brief. Activate when building or briefing any Zengo launch campaign asset across any channel. Always combine with zengo-campaign skill for design tokens and SFMC email patterns.
+description: Campaign copy, creative specs, and channel briefs for the Zengo Predictions launch. Sourced from Launch_Kit_V6. Contains ready-to-use social copy (X/Twitter, Facebook, Instagram, LinkedIn), in-app messaging specs (Braze modal, popup, push, content card), and email campaign brief. Activate when building or briefing any Zengo launch campaign asset across any channel. Always combine with zengo-campaign skill for design tokens and SFMC email patterns.
 ---
 
 # Zengo Launch Kit V6
-
-Source: `Launch_Kit_V6__offline_.html` — Zengo Predictions launch campaign.
-
----
 
 ## Campaign Narrative
 
@@ -24,14 +19,14 @@ Three creative angles. Pick one or A/B test:
 
 ## Design Tokens (shared across all channels)
 
-From Launch Kit source code:
 ```
-INK    = #101010
-ORANGE = #FE990C   ← primary accent (confirmed across landing page + launch kit)
-TEAL   = #00CECB   ← Yes badges
-RED    = #FF5E5B   ← No badges
-BLUE   = #4B8EF5   ← secondary/info
-GREEN  = #5FC52E   ← success
+INK    = #101010    ← primary dark background
+ORANGE = #FE990C    ← primary accent (CTAs, eyebrows, active states)
+TEAL   = #00CECB    ← Yes badges, live dot
+RED    = #FF5E5B    ← No badges
+BLUE   = #7BB5F5    ← feature card (approx — source from landing page)
+NAVY   = #1A2332    ← feature card (approx — source from landing page)
+CREAM  = #EBE8E5    ← feature card, countdown timer cells
 ```
 
 ---
@@ -252,11 +247,62 @@ Same security. More opportunity. Now live.
 
 ---
 
-## App UI Data (from AppBackground component)
+## FIFA World Cup 2026 — Section Design Spec
+
+### CRITICAL: FIFA section uses WHITE background
+The FIFA campaign section on the landing page and in email uses **white/light background**, not dark.
+Do not apply dark `#101010` to this section.
+
+### Layout sequence (white bg):
+1. FIFA World Cup 2026 trophy logo/crest — centered, ~80px
+2. Two-line headline:
+   - "Back your team." — `#101010`, weight 900, large
+   - "Make your call." — `#fe990c`, weight 900, large
+3. Countdown timer (see below)
+4. Team cards — 3-column grid (dark cards on white bg)
+5. Tagline: **"48 nations. 104 matches. One winning bracket."** — `#101010`, bold
+6. CTA: orange pill "Trade now"
+
+### Countdown Timer
+- Cell background: **cream / light** (`#ebe8e5` or similar) — NOT dark
+- Cell text (numbers): `#101010`, large, weight 900
+- Cell label (Days/Hours/Minutes/Seconds): `#707482`, small, uppercase
+- Separator: `:` in `#101010`
+- Border-radius: 12–16px on each cell
+
+### Team Cards — DARK on white section
+Each team card shows a **specific, distinct market** per team (not all "Win tournament"):
+
+| Team | Market shown | Yes% | Yes¢ | No¢ |
+|---|---|---|---|---|
+| Argentina | Win the 2026 FIFA World Cup | 31% | 31¢ | 69¢ |
+| Brazil | Reach the top 4 | 58% | 58¢ | 42¢ |
+| England | Reach the final | 42% | 42¢ | 58¢ |
+
+*Odds sourced from Polymarket. Update before each send. Use these as illustrative defaults only.*
+
+**Team card structure:**
+```
+[Flag image]  Team Name
+              Market description
+──────────────────────────────────
+[Teal ←──────────────────── Red]  (proportional split bar)
+Yes XX¢                    No XX¢
+              XX%           (large, centered)
+```
+
+- Progress bar: split bar — teal side = Yes probability, red side = No probability
+- Pricing: **cent format** ("Yes 31¢" / "No 69¢") shown at bar ends
+- Percentage: 22–26px, white, weight 900, centered below bar
+- Card bg: `#101010` or `#1b1c1d`; border-radius: 16px
+
+---
+
+## App UI Reference Data
 
 **Prediction Balance display:** `$920.10`
 
-**Live market rows shown in app:**
+**Live market rows shown in app (defaults):**
 | Market | % | Yes | No |
 |--------|---|-----|----|
 | 2026 FIFA World Cup Winner | 25% | 25¢ | 75¢ |
@@ -269,10 +315,21 @@ Same security. More opportunity. Now live.
 - Add Funds: bg `#FE990C`, text `#101010`
 - Withdraw: bg `#26211a`, text `#d8b274`
 
-**MiniCard component (used in modals):**
-- bg: `#1b1c1d`, border-radius 12, border `rgba(255,255,255,.06)`
-- Yes bar: bg `#004f4d`, text `#00CECB`
-- No bar: bg `#4a1614`, text `#FF5E5B`
+---
+
+## World Cup Winner Market — Full Odds (from Polymarket)
+
+Top teams at time of launch:
+
+| Team | Win WC % | Yes¢ | No¢ |
+|---|---|---|---|
+| France | 25% | 25¢ | 75¢ |
+| Spain | 22% | 22¢ | 78¢ |
+| England | 19% | 19¢ | 81¢ |
+| Argentina | 31% | 31¢ | 69¢ |
+| Brazil | — (shown as Top 4) | — | — |
+
+*Source: Zengo landing page → Live from Polymarket section. Always refresh before send.*
 
 ---
 

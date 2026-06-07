@@ -1,232 +1,231 @@
 ---
 name: zengo-campaign
-description: >
-  Build production-ready Zengo marketing campaign emails using the correct SFMC content-block architecture and Zengo's landing page design language. Activate for ANY Zengo campaign email, onboarding, acquisition, or event email. Always use alongside etoro-email-builder for SFMC architecture rules. CRITICAL: Design tokens are sourced from the Zengo Predictions landing page HTML — not from eToro's DarkBlueGreen theme. Never write "prediction market/markets" — use "Zengo markets" or "trade on outcomes". Read references/zengo-email-patterns.md for all HTML components.
+description: Production-ready Zengo prediction markets email system for SFMC. Covers design tokens, section layout, component library, SFMC setup, and naming rules. Always combine with zengo-launch-kit for campaign copy and etoro-email-builder for SFMC delivery rules.
 ---
 
 # Zengo Campaign Skill
 
-## Source of Truth
+This skill enables production-ready Zengo marketing campaign emails using correct SFMC architecture and Zengo's landing page design language. It applies to acquisition, onboarding, event, and reactivation Zengo campaign emails.
 
-Design system extracted directly from `Zengo___Prediction_Markets.html` (Landing Page v4).
-
----
-
-## CSS Design Tokens (from `:root`)
-
-```css
---white:     #ffffff
---cream:     #ebe8e5
---ink:       #101010   /* primary dark bg, main text */
---card:      #202020   /* card backgrounds */
---ink2:      #18191a   /* country pill bg, deep dark */
---gray:      #707482   /* eyebrow text, muted labels */
---gray-light:#a7aab3   /* body text on dark sections */
---gray-300:  #bdbcc3   /* stat percentages */
---gray-400:  #adb3b7   /* team card sub text */
---orange:    #fe990c   /* PRIMARY ACCENT — CTAs, highlights, eyebrow dots */
---teal:      #00cecb   /* Yes button text */
---teal-bg:   #002929   /* Yes button background */
---red:       #ff5e5b   /* No button text */
---red-bg:    #331312   /* No button background */
---blue:      #6cb1ff   /* edge card variant */
---border:    #c8c9cd   /* FAQ toggle */
---stroke:    #2f3436   /* card hover border, icon bg */
-```
-
-**Key colour decisions:**
-- Page background on dark sections: `--ink` = `#101010`
-- Page background on light sections: `--white` = `#ffffff`
-- Primary accent: `--orange` = `#fe990c` (NOT `#F5A200` — that was a prior wrong assumption)
-- CTA button text on orange: `--ink` = `#101010`
-- Yes badge: bg `#002929`, text `#00cecb`
-- No badge: bg `#331312`, text `#ff5e5b`
-- Section divider between light/dark: just switching background — no horizontal rule
+## Design System Source
+All design tokens derive from the Zengo landing page (v4 and above), **not** eToro's DarkBlueGreen theme.
 
 ---
 
-## Typography (from CSS)
+## Core Color Palette
 
-**Font:** `Satoshi` (web font) → email fallback: `-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
-> For SFMC email: use `Verdana, sans-serif` (email-safe). All size/weight values below come directly from the landing page.
-
-| Element | Size | Weight | Letter-spacing | Color |
-|---------|------|--------|---------------|-------|
-| Hero h1 | 88px (→ email: 32px) | 900 | -0.03em | `#ffffff` |
-| Section h2 | 83px (→ email: 28px) | 900 | -0.03em | context |
-| FIFA/countdown h2 | 83px (→ email: 28px) | 900 | -0.03em | `#101010` |
-| Edge card h3 | 34px (→ email: 22px) | 700 | -0.03em | context |
-| How-it-works h3 | — | 700 | — | `#ffffff` |
-| Eyebrow | 18px (→ email: 11px) | 500 | -0.03em | `#707482` |
-| Lede/body large | 24px (→ email: 16px) | 500 | -0.03em | `#707482` |
-| Body text (dark bg) | 18px (→ email: 14px) | 500 | -0.03em | `#a7aab3` |
-| Stat number | 64px (→ email: 32px) | 900 | -0.03em | `#101010` |
-| Stat label | 20px (→ email: 13px) | 500 | -0.03em | `#707482` |
-| CTA button | 18px (→ email: 16px) | 700 | -0.03em | `#101010` |
-| Team card % | 57px (→ email: 36px) | 900 | — | `#bdbcc3` |
-| FAQ question | 20px (→ email: 16px) | 700 | -0.03em | `#ffffff` |
-| FAQ answer | 18px (→ email: 14px) | 500 | -0.03em | `#a7aab3` |
-| Footer col header | 15.6px | 700 | -0.01em | `#fe990c` |
-| Disclaimer/legal | 14px | 400 | — | `#ffffff` |
-
----
-
-## Section Inventory (in page order)
-
-1. **Hero** — full-bleed video/image, rounded card (`border-radius:24px`), dark gradient overlay, text bottom-left, orange CTA, Trustpilot stars
-2. **Stats** — white bg, 3 stats: `$4.2B+` / `24K+` / `8M+`, large black numbers, gray labels
-3. **Momentum / Live Markets** — white bg, eyebrow "Live from Polymarket" (teal dot), filterable market cards grid, orange CTA
-4. **Your Edge** — dark bg (`--ink`), 4 feature cards in 2×2 grid: blue / dark-navy / orange / cream variants
-5. **FIFA World Cup Campaign** — white bg, orange eyebrow dot, FIFA crest image, large h2 with orange accent, countdown (cream cells), team cards (dark bg), orange CTA
-6. **How It Works** — dark bg, 2-col layout: left = headline + body, right = 4 numbered steps
-7. **Available Globally** — orange bg (`--orange`), marquee of country pills (dark `--ink2` bg, `--stroke` border)
-8. **FAQ** — dark bg, accordion list, dark card items
-9. **Final CTA** — orange bg, QR code + download button, large headline
-10. **Footer** — dark bg, brand column + 5 link columns, social icons, legal
-
----
-
-## Component Patterns
-
-### Eyebrow
-- Dot + label. Two variants:
-  - **Teal dot:** `--teal` (`#00cecb`) + `--gray` text → "Live from Polymarket"
-  - **Orange dot:** `--orange` (`#fe990c`) + `--gray` text → "World Cup 2026 · Featured campaign"
-
-### CTA Buttons
-- **Primary (orange pill):** bg `#fe990c`, color `#101010`, font-weight 700, border-radius 90px, padding 16px 28px, font-size 18px
-- **Outline (light):** border 1px solid `#ffffff`, color `#ffffff`, hover fills white with dark text
-- **Dark pill:** bg `#101010`, color `#ebe8e5`, border-radius 10px
-
-### Market Card (`.market-card`)
-- bg: `#101010` (--ink)
-- border-radius: 16px
-- padding: 24px 12px
-- border: 1px solid transparent → hover: `#2f3436`
-- Icon: 46×46px, border-radius 6px, bg `#2f3436`
-- Title: 17px, 700 weight, `#ffffff`
-- Outcome row: name (13px, 500, white) + pct (16px, 700, `#bdbcc3`) + Yes/No badges
-- Yes badge: bg `#002929`, color `#00cecb`, border-radius 4px, padding 3px 12px
-- No badge: bg `#331312`, color `#ff5e5b`, border-radius 4px, padding 3px 12px
-- Footer: 12px, `#707482`, icon + "Ends [date]" + "$[N]M Vol."
-
-### Team Card (`.team-card`) — FIFA section
-- bg: `#101010`, border-radius 16px, padding 24px 12px
-- Flag: 62×62px, border-radius 6px
-- Team name: 29px, 700, `#ffffff`
-- Sub text: 16px, 500, `#adb3b7`
-- Progress bar: 5px, teal fill (Yes %) + red fill (No %)
-- Prices: teal for Yes, red for No
-- Large % number: 57px, 900, `#bdbcc3`
-
-### Countdown (`.cd-cell`) — FIFA section
-- bg: `#ebe8e5` (cream)
-- border-radius: 16px
-- Number: 111px, 900, `#101010`
-- Label: 24px, 500, `#707482`
-- Separator `:` — same size, `#101010`
-
-### Edge/Feature Card (`.edge-card`)
-- border-radius: 20px, padding: 30px, min-height: 327px
-- Variants: `.orange` (bg `#fe990c`), `.blue` (bg `#6cb1ff`), `.cream` (bg `#ebe8e5`), `.darkc` (bg `#202020` or custom dark)
-- Icon: 52×52px SVG
-- H3: 34px, 700, -0.03em
-- P: 16px, 500, 1.5 line-height
-
-### How It Works Steps
-- Step number: standalone `--ink` colored circle or just text in dark bg
-- H3: bold, white
-- P: 18px, 500, `#a7aab3`
-- Steps are 1–4: Find a market / Take a position / Trade or hold / Claim your wins
-
-### Country Pill (`.country-pill`) — Globally section
-- bg: `#18191a` (--ink2)
-- border: 1.5px solid `#2f3436` (--stroke)
-- border-radius: 143px, padding: 13px 22px, height: 55px
-- Flag: 30×22px, border-radius 3px
-- Country name: 18px, 500, `#ffffff`
-
-### Stats (`.stat`)
-- Number: 64px, 900, `#101010`
-- Label: 20px, 500, `#707482`
-- Landing page stats: `$4.2B+` Predicted volume / `24K+` Active markets / `8M+` Predictors
-
----
-
-## SFMC Color Overrides for Email (translating landing page → email)
-
-The landing page is light (`--white`) background in most sections, dark (`--ink`) in others. For email, we default to **dark sections** (`--ink` = `#101010`) throughout (matching the Figma dark theme).
-
-| Landing page token | Email value | Notes |
+| Token | Hex | Usage |
 |---|---|---|
-| Section bg (dark) | `#101010` | Replaces all `bgcolor` |
-| Section bg (light) | `#ffffff` | Stats bar, light sections |
-| Orange accent | `#fe990c` | CTAs, eyebrow dot, step circles |
-| CTA text | `#101010` | Black on orange |
-| Card bg | `#202020` | Market card, feature card |
-| Card border hover | `#2f3436` | Subtle border |
-| Body text (dark bg) | `#a7aab3` | |
-| Muted/label text | `#707482` | |
-| White headings | `#ffffff` | |
-| Yes badge bg | `#002929` | |
-| Yes badge text | `#00cecb` | |
-| No badge bg | `#331312` | |
-| No badge text | `#ff5e5b` | |
-| Cream (countdown bg) | `#ebe8e5` | |
-| Orange section bg | `#fe990c` | Final CTA, globally section |
+| Ink | `#101010` | Dark section backgrounds, text on light |
+| Card dark | `#202020` | Cards on dark backgrounds |
+| Card border | `#2f3436` | Subtle borders on dark cards |
+| White | `#ffffff` | Light section backgrounds |
+| Orange | `#fe990c` | Primary CTA, eyebrow dots, active accents |
+| Teal | `#00cecb` | Yes badge text, live eyebrow dot |
+| Red | `#ff5e5b` | No badge text |
+| Cream | `#ebe8e5` | Cream feature card background, footer bg |
+| Blue | `#7bb5f5` | Blue feature card background (approx — use landing page source) |
+| Navy | `#1a2332` | Dark navy feature card background (approx — use landing page source) |
+| Body text (dark bg) | `#a7aab3` | Body/lede on dark backgrounds |
+| Muted text (dark bg) | `#707482` | Captions, labels, metadata on dark |
+
+### Yes / No Badge Colors (market cards)
+| Badge | Background | Text |
+|---|---|---|
+| Yes | `#002929` | `#00cecb` |
+| No | `#331312` | `#ff5e5b` |
+
+### MiniCard component (used in modals and in-app)
+- Background: `#1b1c1d`; border: `rgba(255,255,255,.06)`; border-radius: 12px
+- Yes bar bg: `#004f4d`; text: `#00CECB`
+- No bar bg: `#4a1614`; text: `#FF5E5B`
 
 ---
 
-## SFMC Variable Block — Zengo
+## Typography
+
+Primary font: **Satoshi** (landing page, web). Email-safe fallback: `Verdana, sans-serif`.
+
+| Element | Size | Weight | Letter-spacing |
+|---|---|---|---|
+| H1 hero | 32px | 900 | -0.03em |
+| H2 section | 28px | 900 | -0.03em |
+| H3 card | 20px | 700 | -0.02em |
+| Body / lede | 15px | 500 | 0 |
+| Eyebrow | 11px | 700 | 0.10–0.12em |
+| CTA | 16px | 700 | -0.01em |
+| Caption / meta | 11px | 500–600 | 0.06em |
+| Market % | 22–26px | 900 | -0.03em |
+
+---
+
+## Section Background Alternation — CRITICAL
+
+The Zengo site and emails use **alternating light/dark sections**, not an all-dark layout. Follow this sequence:
+
+| Section | Background |
+|---|---|
+| Logo header | Dark (`#101010`) |
+| Hero (photo or color) | Dark (`#101010`) or full-bleed photo |
+| Stats bar | **Dark** (`#101010`) — white numbers on dark |
+| Markets / Live section | **White** (`#ffffff`) — dark cards on white bg |
+| "Your Edge" / Feature cards | **Dark** (`#101010`) |
+| FIFA / Event countdown | **White** (`#ffffff`) — cream countdown on white |
+| Final CTA section | Orange (`#fe990c`) |
+| Disclaimer | Dark (`#1a1a1a`) |
+| Footer | Dark (`#101010`) |
+
+---
+
+## Section Components
+
+### Hero
+- Full-bleed image or dark `#101010` card with rounded corners (16–20px radius)
+- Eyebrow: orange dot + uppercase label, 11px, letter-spacing 0.12em
+- Headline: 32px, weight 900, white, -0.03em
+- Subheadline/lede: 15px, weight 500, `#a7aab3`
+- CTA: orange pill, `#fe990c` bg, `#101010` text, border-radius 90px, 15px padding vertical
+
+### Stats Bar — DARK background
+- Background: `#101010` (NOT white)
+- 3 columns, white metric numbers (26px, weight 900), gray labels (`#707482`, uppercase)
+- Border between columns: subtle dark divider or spacing only
+- Stats: **8M+ Predictors · $4.2B+ Volume · 24K+ Active markets**
+
+### Live Markets Section — WHITE background
+- Page/section background: `#ffffff`
+- Eyebrow: `● Live from Polymarket` — teal dot, `#707482` text
+- Section headline: large, bold, `#101010`, e.g. "See what the world thinks will happen next"
+- Filter chips (optional in email): All · FIFA · Sports · Crypto · Politics · Tech & AI · Culture
+- Market cards (see Market Card component below) sit on white bg
+
+### Market Card
+Dark card (`#202020` or `#1b1c1d`) on white section background. Structure:
+```
+[Icon] Market Title
+──────────────────────────────
+Outcome A     XX%   [Yes] [No]
+Outcome B     XX%   [Yes] [No]
+Outcome C     XX%   [Yes] [No]
++N outcomes
+──────────────────────────────
+Ends [date]          $XXXm Vol.
+```
+- Pricing format where shown: **"Yes 31¢ · No 69¢"** (cent format, not just %)
+- Yes/No buttons: pill shape, teal bg for Yes, red bg for No
+- Volume and end date in small muted text
+
+### "Your Edge" / Feature Cards — DARK background
+Section background: `#101010`.
+Headline: "Your predictions. Your wallet. Your control." (white, 900 weight)
+Subtext + orange accent line: "Same security, more opportunity."
+
+**4 feature card colorways (left to right):**
+
+| # | Background | Approx Hex | Headline | Body |
+|---|---|---|---|---|
+| 1 | Blue | `#7bb5f5` | "Real markets, real prices." | "Deep prediction-market liquidity... not a house edge." CTA: "Try now →" |
+| 2 | Dark navy | `#1a2332` | "Trusted by Millions" | "2M+ people already trust Zengo wallet." |
+| 3 | Orange | `#fe990c` | "Zero-hack infrastructure." | "MPC splits your key — no seed phrase." CTA: "How MPC works →" |
+| 4 | Cream | `#ebe8e5` | "Secure recovery." | "Zengo's 3-Factor recovery system." CTA: "See an example →" |
+
+Each card: border-radius 20px, icon at top, headline 18–20px weight 700, body 13px, CTA text link with arrow.
+Text color on blue/cream cards: `#101010`. Text color on navy/orange cards: `#101010` or `#ffffff` depending on contrast.
+
+### FIFA / Event Section — WHITE background
+- Section background: **white** (`#ffffff`)
+- FIFA World Cup trophy logo/crest at top center
+- Headline (two lines):
+  - Line 1: "Back your team." — black (`#101010`), 900 weight
+  - Line 2: "Make your call." — orange (`#fe990c`), 900 weight
+- Countdown timer: **cream/light boxes** (`#ebe8e5` or similar), dark text, format: `DD : HH : MM : SS` with "Days · Hours · Minutes · Seconds" labels
+- Team cards: dark bg (`#101010` or `#1b1c1d`), 3-column grid
+- Tagline: "48 nations. 104 matches. One winning bracket." — black bold
+- CTA: orange pill "Trade now"
+
+### FIFA Team Card
+Each team card shows a **specific market** (not always "Win tournament"):
+```
+[Flag image]  Team Name
+              Market description (e.g. "Win the 2026 FIFA World Cup")
+──────────────────────────────
+[Teal bar]────────────[Red bar]
+Yes XX¢ ←                → No XX¢
+              XX%
+```
+- Pricing: cent format e.g. "Yes 31¢" / "No 69¢"
+- Progress bar: split teal (Yes side) and red (No side) proportional to probability
+- Percentage large centered below bar (22–26px, white, 900 weight)
+
+**Current World Cup 2026 market odds (from Polymarket, as at launch):**
+| Team | Market | Yes% | Yes¢ | No¢ |
+|---|---|---|---|---|
+| Argentina | Win the 2026 FIFA World Cup | 31% | 31¢ | 69¢ |
+| Brazil | Reach the top 4 | 58% | 58¢ | 42¢ |
+| England | Reach the final | 42% | 42¢ | 58¢ |
+| France | Win the 2026 FIFA World Cup | 25% | 25¢ | 75¢ |
+| Spain | Win the 2026 FIFA World Cup | 22% | 22¢ | 78¢ |
+
+*Update odds from Polymarket before sending. These are illustrative defaults.*
+
+### How It Works (4 steps)
+- Dark background (`#202020` card or `#101010` section)
+- 4 numbered orange circles (36px diameter, `#fe990c` bg, `#101010` text)
+- Steps: (1) Download Zengo · (2) Add USDC · (3) Back your position · (4) Settle fast
+
+### CTA Section (closing)
+- Background: orange (`#fe990c`)
+- Headline: white or `#101010` depending on contrast (test — `#101010` on orange is correct per brand)
+- CTA button: dark pill (`#101010` bg, white text), border-radius 90px
+
+### Disclaimer Block
+- Background: `#1a1a1a` or dark card, border-radius 12px
+- Text color: `rgba(255,255,255,0.35)` — semi-transparent white
+- Font size: 10px, line-height 1.6
+
+---
+
+## Naming Conventions
+
+**NEVER** use "prediction market/markets" in email copy or subject lines. Instead use:
+- "Zengo markets"
+- "trade on outcomes"
+- "make your call"
+- "back your view"
+- "markets"
+
+*Note: The Zengo website does use "prediction markets" in its own hero headline — this rule applies to email copy only.*
+
+---
+
+## SFMC Setup
 
 ```
-%%[ set @fallback = "en-gb"
-    set @CampaignGroup = "eToroZengo"
-    set @CampaignSubGroup = "Marketing"
-    set @HideHeader = "true"
-    set @subject = "{subject line}"
-    set @preheader = "{preheader text}"
-    set @TrackingLink = "?utm_medium=email&utm_source=%%jobid%%&utm_campaign=eToroZengo_Marketing_%%jobid%%_{CampaignName}"
+%%[
+  SET @HideHeader = "true"
+  SET @campaignGroup = "eToroZengo"
+  SET @campaignSubGroup = "[SubGroup]"   /* e.g. FIFA_WorldCup2026_Winner */
+  SET @emailName = "Zengo_[CampaignName]_[Language]"
 ]%%
-<!--theme: %%[ set @theme = "DarkBlueGreen" ]%% -->
-<!--newSTR-->
 ```
 
-- `@HideHeader = "true"` — suppress eToro logo; inject Zengo logo header as first content block
-- `@CampaignSubGroup = "Operational"` for transactional/onboarding
+- Inject Zengo logo as first content block (150px width, white on dark)
+- Logo S3 path: `https://etoro-production.s3.eu-west-1.amazonaws.com/e-marketing/MarketingAutomation/Zengo/zengo-logo-white.png`
+- CTA tracking: wrap URLs in `%%=RedirectTo(CloudPagesURL(N))=%%`
 
 ---
 
-## Campaign Types
+## Required Disclaimers (all 3, every email)
 
-| Type | Audience | Angle | CTA |
-|------|----------|-------|-----|
-| Acquisition | eToro crypto users | "Trade on outcomes, with confidence." | Get Zengo |
-| Onboarding | New Zengo users | 4-step orientation | Open Zengo |
-| Event/market | Active Zengo users | "Back your team. Make your call." | Trade now |
-| Pro Upsell | Essentials users | Bitcoin Vaults + discounted fees | Upgrade to Pro |
-| Reactivation | Inactive 30/60/90d | "The market won't wait." | Return to Zengo |
+1. Cryptoassets are highly volatile. Your capital is at risk. The value of your position may go down as well as up and you may receive back less than you invest. Past performance is not a reliable indicator of future results.
+2. Zengo is a non-custodial wallet. You are solely responsible for safeguarding access to your assets. Zengo Ltd does not hold, custody, or control your funds.
+3. Regulated services provided by eToro (Europe) Ltd (CySEC), eToro (UK) Ltd (FCA), and eToro AUS Capital Limited (ASIC). Zengo markets may not be available in all regions. Subject to local regulation.
 
 ---
 
-## Naming Rules
+## Reference Materials
 
-**NEVER write:** "prediction market" / "prediction markets"  
-**Use instead:** "Zengo markets" / "trade on outcomes" / "make your call" / "back your view"
-
----
-
-## Disclaimers (always include)
-
-1. *Cryptoasset investing is highly volatile and unregulated in some jurisdictions. No consumer protection. Tax on profits may apply.*
-2. *Zengo is a non-custodial wallet. Assets held in Zengo are not covered by eToro's regulatory protections. You are responsible for securing access to your wallet.*
-3. *eToro (UK) Ltd. is authorised and regulated by the Financial Conduct Authority (FCA). eToro (Europe) Ltd. is authorised and regulated by the Cyprus Securities Exchange Commission (CySEC). eToro AUS Capital Limited is regulated by the Australian Securities and Investments Commission (ASIC).*
-
----
-
-## Reference Files
-
-| File | Purpose |
-|------|---------|
-| `references/zengo-email-patterns.md` | All SFMC HTML component patterns with correct colors |
-| `references/zengo-copy-bank.md` | Subject lines, headlines, CTAs, body copy |
+- `references/zengo-email-patterns.md` — SFMC HTML component library
+- `references/zengo-copy-bank.md` — Approved copy templates and messaging framework
+- `zengo-launch-kit/SKILL.md` — Campaign copy, social, in-app, FIFA angles
+- `zengo-image-background/SKILL.md` — Photo/app-screenshot hero variant
