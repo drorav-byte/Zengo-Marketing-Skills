@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zengo - Introduction to Prediction Markets</title>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#0d0d0d; font-family:Verdana,sans-serif; -webkit-font-smoothing:antialiased; }
+.note { background:#1a1a1a; color:#707482; font-size:11px; font-family:monospace; padding:8px 16px; text-align:center; border-bottom:1px solid #2a2a2a; }
+.note span { color:#fe990c; }
+.shell { max-width:600px; margin:24px auto; box-shadow:0 8px 40px rgba(0,0,0,0.7); }
+.logo { background:#101010; padding:20px 24px; text-align:center; }
+.logo-text { font-weight:900; font-size:22px; color:#fff; letter-spacing:-0.03em; }
+.hero { background:#101010; padding:64px 40px 56px; text-align:center; }
+.eyebrow { font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#707482; margin-bottom:20px; }
+.dot { display:inline-block; width:7px; height:7px; border-radius:50%; vertical-align:middle; margin-right:7px; position:relative; top:-1px; }
+.dot-orange { background:#fe990c; }
+.dot-teal { background:#00cecb; }
+.hero-h1 { font-size:38px; font-weight:900; letter-spacing:-0.03em; line-height:1.08; color:#fff; margin-bottom:24px; max-width:480px; margin-left:auto; margin-right:auto; }
+.orange { color:#fe990c; }
+.lede { font-size:16px; line-height:1.6; color:#a7aab3; margin-bottom:40px; max-width:440px; margin-left:auto; margin-right:auto; }
+.btn-orange { display:inline-block; background:#fe990c; color:#101010; font-size:15px; font-weight:900; text-decoration:none; border-radius:100px; padding:15px 40px; }
+.btn-dark { display:inline-block; background:#101010; color:#fff; font-size:16px; font-weight:900; text-decoration:none; border-radius:100px; padding:16px 44px; }
+.basics { background:#fff; padding:56px 40px 48px; }
+.sect-label { font-size:11px; font-weight:700; color:#707482; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px; }
+.sect-h2 { font-size:26px; font-weight:900; letter-spacing:-0.03em; line-height:1.15; color:#101010; margin-bottom:32px; }
+.step { border:1.5px solid #ebebeb; border-radius:16px; margin-bottom:16px; display:flex; align-items:flex-start; padding:24px; gap:16px; }
+.step:last-child { margin-bottom:0; }
+.num { width:40px; height:40px; border-radius:50%; font-size:16px; font-weight:900; text-align:center; line-height:40px; flex-shrink:0; }
+.num-dark { background:#101010; color:#fe990c; }
+.num-orange { background:#fe990c; color:#101010; }
+.step-title { font-size:14px; font-weight:700; color:#101010; margin-bottom:6px; }
+.step-copy { font-size:13px; color:#707482; line-height:1.55; }
+.yes-text { color:#00cecb; font-weight:700; }
+.no-text { color:#ff5e5b; font-weight:700; }
+.markets { background:#101010; padding:56px 24px 48px; text-align:center; }
+.markets-h2 { font-size:24px; font-weight:900; letter-spacing:-0.03em; line-height:1.15; color:#fff; margin-bottom:32px; }
+.mcard { background:#1a1a1a; border-radius:16px; margin-bottom:12px; text-align:left; overflow:hidden; }
+.mcard:last-child { margin-bottom:0; }
+.mcard-inner { padding:20px 20px 16px; }
+.mcard-tag { font-size:10px; font-weight:700; color:#707482; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; }
+.mcard-q { font-size:15px; font-weight:700; color:#fff; line-height:1.3; margin-bottom:16px; }
+.split { height:6px; border-radius:3px; overflow:hidden; display:flex; margin-bottom:10px; }
+.s-yes { background:#00cecb; }
+.s-no { background:#ff5e5b; }
+.prices { display:flex; justify-content:space-between; }
+.p-yes { font-size:12px; font-weight:700; color:#00cecb; }
+.p-no { font-size:12px; font-weight:700; color:#ff5e5b; }
+.mcard-foot { padding:0 20px 16px; }
+.btn-card { display:inline-block; background:#fe990c; color:#101010; font-size:12px; font-weight:900; text-decoration:none; border-radius:100px; padding:9px 22px; }
+.why { background:#f8f5f2; padding:56px 32px 48px; }
+.why-h2 { font-size:24px; font-weight:900; letter-spacing:-0.03em; line-height:1.2; color:#101010; margin-bottom:36px; }
+.diff-grid { display:flex; gap:16px; }
+.diff-card { flex:1; background:#fff; border-radius:16px; border:1.5px solid #ebebeb; padding:24px; }
+.diff-bar { width:36px; height:4px; border-radius:2px; margin-bottom:16px; }
+.diff-title { font-size:14px; font-weight:700; color:#101010; margin-bottom:8px; line-height:1.3; }
+.diff-copy { font-size:12px; color:#707482; line-height:1.55; }
+.hiw { background:#101010; padding:48px 24px; text-align:center; }
+.hiw-ey { font-size:11px; font-weight:700; color:#fe990c; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:12px; }
+.hiw-h2 { font-size:26px; font-weight:900; color:#fff; letter-spacing:-0.03em; margin-bottom:36px; line-height:1.15; }
+.hiw-steps { display:flex; justify-content:center; gap:16px; }
+.hiw-step { flex:1; max-width:160px; text-align:center; }
+.hiw-num { width:40px; height:40px; background:#fe990c; border-radius:50%; font-size:16px; font-weight:900; color:#101010; display:flex; align-items:center; justify-content:center; margin:0 auto 14px; }
+.hiw-img { width:120px; height:80px; border-radius:12px; background:#1e1e1e; margin:0 auto 12px; }
+.hiw-title { font-size:13px; font-weight:700; color:#fff; margin-bottom:6px; }
+.hiw-copy { font-size:12px; color:#707482; line-height:1.5; }
+.fcta { background:#fe990c; padding:52px 32px 48px; text-align:center; }
+.fcta-h2 { font-size:26px; font-weight:900; letter-spacing:-0.03em; line-height:1.1; color:#101010; margin-bottom:12px; }
+.fcta-sub { font-size:15px; color:rgba(0,0,0,0.65); line-height:1.5; margin-bottom:32px; max-width:380px; margin-left:auto; margin-right:auto; }
+.footer { background:#101010; }
+.disc-wrap { padding:32px 24px 12px; }
+.disc-box { background:#1a1a1a; border-radius:12px; padding:20px; max-width:560px; margin:0 auto; }
+.disc-box p { font-size:10px; line-height:1.6; color:rgba(255,255,255,0.35); margin:0 0 8px; }
+.disc-box p:last-child { margin:0; }
+.flinks { padding:16px 24px 32px; text-align:center; }
+.flinks p { font-size:11px; color:#707482; line-height:1.6; }
+.flinks a { color:#707482; text-decoration:underline; }
+.fcopy { font-size:11px; color:#444752; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<div class="note">BROWSER PREVIEW &mdash; <span>zengo-intro-prediction-markets-braze-v1.html</span> &nbsp;|&nbsp; Language: EN</div>
+
+<div class="shell">
+
+  <div class="logo"><div class="logo-text">zengo</div></div>
+
+  <div class="hero">
+    <p class="eyebrow"><span class="dot dot-orange"></span>Zengo Markets</p>
+    <h1 class="hero-h1">Who&#8217;s going to win?<br><span class="orange">The market already knows.</span></h1>
+    <p class="lede">Millions of people trade on prediction markets every day &mdash; and you can be part of it. Predict the future. Win when you&#8217;re right.</p>
+    <a href="#" class="btn-orange">See Live Markets</a>
+  </div>
+
+  <div class="basics">
+    <p class="sect-label">The Basics</p>
+    <h2 class="sect-h2">How it actually works.</h2>
+    <div class="step">
+      <div class="num num-dark">1</div>
+      <div><div class="step-title">An event is going to happen</div>
+      <div class="step-copy">An election. A match. A central bank decision. Zengo creates a market around it.</div></div>
+    </div>
+    <div class="step">
+      <div class="num num-dark">2</div>
+      <div><div class="step-title">You take a position</div>
+      <div class="step-copy">Buy <span class="yes-text">Yes</span> if you think it&#8217;ll happen, or <span class="no-text">No</span> if you think it won&#8217;t. From as little as 1&cent;.</div></div>
+    </div>
+    <div class="step">
+      <div class="num num-orange">3</div>
+      <div><div class="step-title">The market settles &mdash; and you get paid</div>
+      <div class="step-copy">The event happens. Winners receive $1 per share. Losers lose their stake. That&#8217;s it.</div></div>
+    </div>
+  </div>
+
+  <div class="markets">
+    <p class="eyebrow"><span class="dot dot-teal"></span>Live Now</p>
+    <h2 class="markets-h2">What the world is betting on right now.</h2>
+    <div class="mcard">
+      <div class="mcard-inner">
+        <p class="mcard-tag">Sports &middot; FIFA 2026</p>
+        <p class="mcard-q">Will France win the 2026 World Cup?</p>
+        <div class="split"><div class="s-yes" style="width:25%;"></div><div class="s-no" style="width:75%;"></div></div>
+        <div class="prices"><span class="p-yes">Yes 25&cent;</span><span class="p-no">No 75&cent;</span></div>
+      </div>
+      <div class="mcard-foot"><a href="#" class="btn-card">Take a position</a></div>
+    </div>
+    <div class="mcard">
+      <div class="mcard-inner">
+        <p class="mcard-tag">Crypto &middot; Bitcoin</p>
+        <p class="mcard-q">Will Bitcoin reach $150,000 before end of 2026?</p>
+        <div class="split"><div class="s-yes" style="width:58%;"></div><div class="s-no" style="width:42%;"></div></div>
+        <div class="prices"><span class="p-yes">Yes 58&cent;</span><span class="p-no">No 42&cent;</span></div>
+      </div>
+      <div class="mcard-foot"><a href="#" class="btn-card">Take a position</a></div>
+    </div>
+    <div class="mcard">
+      <div class="mcard-inner">
+        <p class="mcard-tag">Politics &middot; World</p>
+        <p class="mcard-q">Will AI replace 10% of jobs before 2030?</p>
+        <div class="split"><div class="s-yes" style="width:71%;"></div><div class="s-no" style="width:29%;"></div></div>
+        <div class="prices"><span class="p-yes">Yes 71&cent;</span><span class="p-no">No 29&cent;</span></div>
+      </div>
+      <div class="mcard-foot"><a href="#" class="btn-card">Take a position</a></div>
+    </div>
+  </div>
+
+  <div class="why">
+    <p class="sect-label">Not like sports betting</p>
+    <h2 class="why-h2">Here, your knowledge is your edge.</h2>
+    <div class="diff-grid">
+      <div class="diff-card"><div class="diff-bar" style="background:#fe990c;"></div><div class="diff-title">Real market prices</div><div class="diff-copy">Prices reflect what millions of traders actually think. No house edge.</div></div>
+      <div class="diff-card"><div class="diff-bar" style="background:#00cecb;"></div><div class="diff-title">Sell any time</div><div class="diff-copy">You don&#8217;t have to wait until the end. Sell your position if the odds move in your favour.</div></div>
+    </div>
+  </div>
+
+  <div class="hiw">
+    <p class="hiw-ey">How It Works</p>
+    <h2 class="hiw-h2">Three steps to your first win.</h2>
+    <div class="hiw-steps">
+      <div class="hiw-step"><div class="hiw-num">1</div><div class="hiw-img"></div><div class="hiw-title">Find your market</div><div class="hiw-copy">Browse sports, politics, crypto &amp; more.</div></div>
+      <div class="hiw-step"><div class="hiw-num">2</div><div class="hiw-img"></div><div class="hiw-title">Back your view</div><div class="hiw-copy">Buy Yes or No from as little as 1&cent;.</div></div>
+      <div class="hiw-step"><div class="hiw-num">3</div><div class="hiw-img"></div><div class="hiw-title">Settle fast</div><div class="hiw-copy">Markets resolve. Winners collect up to $1.</div></div>
+    </div>
+  </div>
+
+  <div class="fcta">
+    <h2 class="fcta-h2">Your first prediction is waiting.</h2>
+    <p class="fcta-sub">Start with 1&cent;. Build confidence. Put your knowledge to work.</p>
+    <a href="#" class="btn-dark">Make My First Prediction</a>
+  </div>
+
+  <div class="footer">
+    <div class="disc-wrap"><div class="disc-box">
+      <p>Cryptoassets are highly volatile. Your capital is at risk. The value of your position may go down as well as up and you may receive back less than you invest. Past performance is not a reliable indicator of future results.</p>
+      <p>Zengo is a non-custodial wallet. You are solely responsible for safeguarding access to your assets. Zengo Ltd does not hold, custody, or control your funds.</p>
+      <p>Regulated services provided by eToro (Europe) Ltd (CySEC), eToro (UK) Ltd (FCA), and eToro AUS Capital Limited (ASIC). Zengo markets may not be available in all regions. Subject to local regulation.</p>
+    </div></div>
+    <div class="flinks">
+      <p>Receiving this because you are a Zengo user. &nbsp;<a href="#">Unsubscribe</a>&nbsp;&middot;&nbsp;<a href="#">Email Preferences</a></p>
+      <p class="fcopy">&copy; 2026 Zengo Ltd. All rights reserved.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+<meta name="x-apple-disable-message-reformatting">
+<title>Introduction to Prediction Markets</title>
+<!--[if mso]>
+<xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
+<![endif]-->
+<style>
+  * { box-sizing: border-box; }
+  body, table, td, p, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+  img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
+  @media only screen and (max-width: 620px) {
+    .email-wrapper { width: 100% !important; }
+    .hero-headline { font-size: 30px !important; }
+    .split-col { display: block !important; width: 100% !important; }
+    .split-col + .split-col { margin-top: 16px !important; }
+  }
+</style>
+</head>
+
+<body style="margin:0;padding:0;background-color:#0d0d0d;-webkit-font-smoothing:antialiased;">
+
+<!--
+  ╔═══════════════════════════════════════════════════╗
+  ║  ZENGO — Introduction to Prediction Markets       ║
+  ║  File: zengo-intro-prediction-markets-braze-v1    ║
+  ║  Platform: Braze (Zengo workspace)                ║
+  ║  Goal: Explain what prediction markets are +      ║
+  ║        drive first trade                          ║
+  ╚═══════════════════════════════════════════════════╝
+-->
+
+<!-- ── LANGUAGE SETUP ───────────────────────────────── -->
+{% if ${language} == 'fr' %}{% assign lang = 'fr' %}
+{% elsif ${language} == 'de' %}{% assign lang = 'de' %}
+{% elsif ${language} == 'es' %}{% assign lang = 'es' %}
+{% elsif ${language} == 'it' %}{% assign lang = 'it' %}
+{% else %}{% assign lang = 'en' %}{% endif %}
+
+<!-- Preheader -->
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;color:transparent;line-height:1px;">
+{% if lang == 'fr' %}Les marchés de prédiction changent la façon dont le monde parie sur l'avenir.
+{% elsif lang == 'de' %}Prognosemärkte verändern, wie die Welt auf die Zukunft wettet.
+{% elsif lang == 'es' %}Los mercados de predicción cambian cómo el mundo apuesta al futuro.
+{% elsif lang == 'it' %}I mercati predittivi stanno cambiando come il mondo scommette sul futuro.
+{% else %}Prediction markets are changing how the world bets on the future.{% endif %}
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#0d0d0d;">
+  <tr>
+    <td align="center" valign="top">
+      <table class="email-wrapper" role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+        <tr><td>
+
+
+<!-- ═══════════════════════════════════════════════════
+     1. LOGO HEADER
+     ═══════════════════════════════════════════════════ -->
+{{content_blocks.${zengo_logo_header}}}
+
+
+<!-- ═══════════════════════════════════════════════════
+     2. HERO — Dark, bold question hook
+     ═══════════════════════════════════════════════════ -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+       style="background-color:#101010;">
+  <tr>
+    <td align="center" style="padding:64px 40px 56px;">
+
+      <!-- Eyebrow with live dot -->
+      <p style="margin:0 0 20px;font-family:Verdana,sans-serif;font-size:11px;font-weight:700;
+                letter-spacing:0.14em;text-transform:uppercase;color:#707482;">
+        <span style="display:inline-block;width:7px;height:7px;border-radius:50%;
+                     background-color:#fe990c;vertical-align:middle;margin-right:7px;
+                     position:relative;top:-1px;"></span>
+        {% if lang == 'fr' %}Zengo Marchés
+        {% elsif lang == 'de' %}Zengo Märkte
+        {% elsif lang == 'es' %}Zengo Mercados
+        {% elsif lang == 'it' %}Zengo Mercati
+        {% else %}Zengo Markets{% endif %}
+      </p>
+
+      <!-- Headline -->
+      <h1 class="hero-headline" style="margin:0 0 24px;font-family:Verdana,sans-serif;font-size:38px;
+            font-weight:900;letter-spacing:-0.03em;line-height:1.08;color:#ffffff;max-width:480px;">
+        {% if lang == 'fr' %}Qui va gagner ?<br>
+          <span style="color:#fe990c;">Le marché le sait déjà.</span>
+        {% elsif lang == 'de' %}Wer wird gewinnen?<br>
+          <span style="color:#fe990c;">Der Markt weiß es bereits.</span>
+        {% elsif lang == 'es' %}¿Quién va a ganar?<br>
+          <span style="color:#fe990c;">El mercado ya lo sabe.</span>
+        {% elsif lang == 'it' %}Chi vincerà?<br>
+          <span style="color:#fe990c;">Il mercato lo sa già.</span>
+        {% else %}Who's going to win?<br>
+          <span style="color:#fe990c;">The market already knows.</span>
+        {% endif %}
+      </h1>
+
+      <!-- Lede -->
+      <p style="margin:0 0 40px;font-family:Verdana,sans-serif;font-size:16px;font-weight:400;
+                line-height:1.6;color:#a7aab3;max-width:440px;">
+        {% if lang == 'fr' %}Des millions de personnes échangent sur des marchés de prédiction chaque jour &mdash; et tu peux en faire partie. Prédit l'avenir. Gagne quand tu as raison.
+        {% elsif lang == 'de' %}Millionen handeln täglich auf Prognosemärkten &mdash; und du kannst dabei sein. Sage die Zukunft voraus. Gewinne, wenn du recht hast.
+        {% elsif lang == 'es' %}Millones de personas operan en mercados de predicción cada día &mdash; y tú puedes unirte. Predice el futuro. Gana cuando tengas razón.
+        {% elsif lang == 'it' %}Milioni di persone fanno trading nei mercati predittivi ogni giorno &mdash; e tu puoi farne parte. Prevedi il futuro. Vinci quando hai ragione.
+        {% else %}Millions of people trade on prediction markets every day &mdash; and you can be part of it. Predict the future. Win when you're right.{% endif %}
+      </p>
+
+      <!-- CTA -->
+      <a href="https://app.zengo.com/predict?utm_source=braze&utm_medium=email&utm_campaign=intro_prediction_markets&utm_content=hero_cta"
+         style="display:inline-block;background-color:#fe990c;color:#101010;
+                font-family:Verdana,sans-serif;font-size:15px;font-weight:900;
+                text-decoration:none;border-radius:100px;padding:15px 40px;
+                letter-spacing:0.01em;">
+        {% if lang == 'fr' %}Voir les marchés en direct
+        {% elsif lang == 'de' %}Live-Märkte ansehen
+        {% elsif lang == 'es' %}Ver mercados en vivo
+        {% elsif lang == 'it' %}Vedi i mercati live
+        {% else %}See Live Markets{% endif %}
+      </a>
+
+    </td>
+  </tr>
+</table>
+<!-- / HERO -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     3. WHAT ARE PREDICTION MARKETS? — White section
+     ═══════════════════════════════════════════════════ -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+       style="background-color:#ffffff;">
+  <tr>
+    <td align="center" style="padding:56px 40px 48px;">
+
+      <!-- Section label -->
+      <p style="margin:0 0 8px;font-family:Verdana,sans-serif;font-size:11px;font-weight:700;
+                color:#707482;text-transform:uppercase;letter-spacing:0.12em;">
+        {% if lang == 'fr' %}La base
+        {% elsif lang == 'de' %}Die Grundlage
+        {% elsif lang == 'es' %}Lo básico
+        {% elsif lang == 'it' %}Le basi
+        {% else %}The Basics{% endif %}
+      </p>
+
+      <h2 style="margin:0 0 32px;font-family:Verdana,sans-serif;font-size:26px;font-weight:900;
+                  letter-spacing:-0.03em;line-height:1.15;color:#101010;">
+        {% if lang == 'fr' %}Comment ça fonctionne, vraiment.
+        {% elsif lang == 'de' %}Wie es wirklich funktioniert.
+        {% elsif lang == 'es' %}Cómo funciona, de verdad.
+        {% elsif lang == 'it' %}Come funziona davvero.
+        {% else %}How it actually works.{% endif %}
+      </h2>
+
+      <!-- 3-step explainer: text-only cards, no generic icons -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+
+        <!-- Step 1 -->
+        <tr>
+          <td style="padding:0 0 16px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                   style="border:1.5px solid #ebebeb;border-radius:16px;overflow:hidden;">
+              <tr>
+                <!-- Number badge -->
+                <td width="72" valign="top"
+                    style="padding:24px 0 24px 24px;vertical-align:top;">
+                  <div style="width:40px;height:40px;background-color:#101010;border-radius:50%;
+                               font-family:Verdana,sans-serif;font-size:16px;font-weight:900;
+                               color:#fe990c;text-align:center;line-height:40px;">1</div>
+                </td>
+                <!-- Text -->
+                <td style="padding:24px 24px 24px 12px;">
+                  <div style="font-family:Verdana,sans-serif;font-size:14px;font-weight:700;
+                               color:#101010;margin-bottom:6px;">
+                    {% if lang == 'fr' %}Un événement se produit
+                    {% elsif lang == 'de' %}Ein Ereignis findet statt
+                    {% elsif lang == 'es' %}Ocurre un evento
+                    {% elsif lang == 'it' %}Si verifica un evento
+                    {% else %}An event is going to happen{% endif %}
+                  </div>
+                  <div style="font-family:Verdana,sans-serif;font-size:13px;font-weight:400;
+                               color:#707482;line-height:1.55;">
+                    {% if lang == 'fr' %}Une élection. Un match. Une décision de banque centrale. Zengo crée un marché dessus.
+                    {% elsif lang == 'de' %}Eine Wahl. Ein Spiel. Ein Zentralbankbeschluss. Zengo eröffnet dafür einen Markt.
+                    {% elsif lang == 'es' %}Una elección. Un partido. Una decisión del banco central. Zengo crea un mercado sobre eso.
+                    {% elsif lang == 'it' %}Un'elezione. Una partita. Una decisione della banca centrale. Zengo crea un mercato su di esso.
+                    {% else %}An election. A match. A central bank decision. Zengo creates a market around it.{% endif %}
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Step 2 -->
+        <tr>
+          <td style="padding:0 0 16px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                   style="border:1.5px solid #ebebeb;border-radius:16px;overflow:hidden;">
+              <tr>
+                <td width="72" valign="top"
+                    style="padding:24px 0 24px 24px;vertical-align:top;">
+                  <div style="width:40px;height:40px;background-color:#101010;border-radius:50%;
+                               font-family:Verdana,sans-serif;font-size:16px;font-weight:900;
+                               color:#fe990c;text-align:center;line-height:40px;">2</div>
+                </td>
+                <td style="padding:24px 24px 24px 12px;">
+                  <div style="font-family:Verdana,sans-serif;font-size:14px;font-weight:700;
+                               color:#101010;margin-bottom:6px;">
+                    {% if lang == 'fr' %}Tu prends position
+                    {% elsif lang == 'de' %}Du nimmst eine Position ein
+                    {% elsif lang == 'es' %}Tomas una posición
+                    {% elsif lang == 'it' %}Prendi una posizione
+                    {% else %}You take a position{% endif %}
+                  </div>
+                  <div style="font-family:Verdana,sans-serif;font-size:13px;font-weight:400;
+                               color:#707482;line-height:1.55;">
+                    {% if lang == 'fr' %}Tu achètes <strong style="color:#00cecb;">Oui</strong> si tu penses que ça arrivera, ou <strong style="color:#ff5e5b;">Non</strong> si tu penses le contraire. À partir d'1 centime.
+                    {% elsif lang == 'de' %}Du kaufst <strong style="color:#00cecb;">Ja</strong>, wenn du glaubst, es wird passieren, oder <strong style="color:#ff5e5b;">Nein</strong>, wenn nicht. Ab 1 Cent.
+                    {% elsif lang == 'es' %}Compras <strong style="color:#00cecb;">Sí</strong> si crees que ocurrirá, o <strong style="color:#ff5e5b;">No</strong> si crees que no. Desde 1 centavo.
+                    {% elsif lang == 'it' %}Compri <strong style="color:#00cecb;">Sì</strong> se pensi che accadrà, o <strong style="color:#ff5e5b;">No</strong> se pensi di no. A partire da 1 centesimo.
+                    {% else %}Buy <strong style="color:#00cecb;">Yes</strong> if you think it'll happen, or <strong style="color:#ff5e5b;">No</strong> if you think it won't. From as little as 1&cent;.{% endif %}
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Step 3 -->
+        <tr>
+          <td style="padding:0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                   style="border:1.5px solid #ebebeb;border-radius:16px;overflow:hidden;">
+              <tr>
+                <td width="72" valign="top"
+                    style="padding:24px 0 24px 24px;vertical-align:top;">
+                  <div style="width:40px;height:40px;background-color:#fe990c;border-radius:50%;
+                               font-family:Verdana,sans-serif;font-size:16px;font-weight:900;
+                               color:#101010;text-align:center;line-height:40px;">3</div>
+                </td>
+                <td style="padding:24px 24px 24px 12px;">
+                  <div style="font-family:Verdana,sans-serif;font-size:14px;font-weight:700;
+                               color:#101010;margin-bottom:6px;">
+                    {% if lang == 'fr' %}Le marché se règle — et tu es payé
+                    {% elsif lang == 'de' %}Der Markt schließt ab &mdash; und du wirst ausgezahlt
+                    {% elsif lang == 'es' %}El mercado se liquida &mdash; y cobras
+                    {% elsif lang == 'it' %}Il mercato si risolve &mdash; e vieni pagato
+                    {% else %}The market settles &mdash; and you get paid{% endif %}
+                  </div>
+                  <div style="font-family:Verdana,sans-serif;font-size:13px;font-weight:400;
+                               color:#707482;line-height:1.55;">
+                    {% if lang == 'fr' %}L'événement se produit. Les détenteurs gagnants reçoivent 1&nbsp;$ par part. Les perdants perdent leur mise. Simple.
+                    {% elsif lang == 'de' %}Das Ereignis tritt ein. Gewinner erhalten $1 pro Anteil. Verlierer verlieren ihren Einsatz. Simpel.
+                    {% elsif lang == 'es' %}El evento ocurre. Los ganadores reciben $1 por posición. Los perdedores pierden su apuesta. Así de simple.
+                    {% elsif lang == 'it' %}L'evento accade. I vincitori ricevono $1 per quota. I perdenti perdono la puntata. Semplice.
+                    {% else %}The event happens. Winners receive $1 per share. Losers lose their stake. That's it.{% endif %}
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+      <!-- / Steps -->
+
+    </td>
+  </tr>
+</table>
+<!-- / WHAT ARE PREDICTION MARKETS -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     4. LIVE MARKET EXAMPLES — Dark section, 3 market cards
+     ═══════════════════════════════════════════════════ -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+       style="background-color:#101010;">
+  <tr>
+    <td align="center" style="padding:56px 24px 48px;">
+
+      <!-- Eyebrow -->
+      <p style="margin:0 0 8px;font-family:Verdana,sans-serif;font-size:11px;font-weight:700;
+                letter-spacing:0.14em;text-transform:uppercase;color:#707482;">
+        <span style="display:inline-block;width:7px;height:7px;border-radius:50%;
+                     background-color:#00cecb;vertical-align:middle;margin-right:7px;
+                     position:relative;top:-1px;"></span>
+        {% if lang == 'fr' %}En direct maintenant
+        {% elsif lang == 'de' %}Jetzt live
+        {% elsif lang == 'es' %}En vivo ahora
+        {% elsif lang == 'it' %}Live ora
+        {% else %}Live Now{% endif %}
+      </p>
+
+      <h2 style="margin:0 0 32px;font-family:Verdana,sans-serif;font-size:24px;font-weight:900;
+                  letter-spacing:-0.03em;line-height:1.15;color:#ffffff;">
+        {% if lang == 'fr' %}Ce sur quoi le monde parie en ce moment.
+        {% elsif lang == 'de' %}Worauf die Welt gerade setzt.
+        {% elsif lang == 'es' %}En qué está apostando el mundo ahora mismo.
+        {% elsif lang == 'it' %}Su cosa sta scommettendo il mondo adesso.
+        {% else %}What the world is betting on right now.{% endif %}
+      </h2>
+
+      <!-- Market Card 1 — FIFA World Cup -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+             style="background-color:#1a1a1a;border-radius:16px;margin-bottom:12px;overflow:hidden;">
+        <tr>
+          <td style="padding:20px 20px 16px;">
+            <!-- Card label -->
+            <p style="margin:0 0 12px;font-family:Verdana,sans-serif;font-size:10px;font-weight:700;
+                       color:#707482;text-transform:uppercase;letter-spacing:0.1em;">
+              {% if lang == 'fr' %}Sport &middot; FIFA 2026
+              {% elsif lang == 'de' %}Sport &middot; FIFA 2026
+              {% elsif lang == 'es' %}Deporte &middot; FIFA 2026
+              {% elsif lang == 'it' %}Sport &middot; FIFA 2026
+              {% else %}Sports &middot; FIFA 2026{% endif %}
+            </p>
+            <!-- Question -->
+            <p style="margin:0 0 16px;font-family:Verdana,sans-serif;font-size:15px;font-weight:700;
+                       color:#ffffff;line-height:1.3;">
+              {% if lang == 'fr' %}La France remportera-t-elle la Coupe du Monde 2026 ?
+              {% elsif lang == 'de' %}Wird Frankreich die WM 2026 gewinnen?
+              {% elsif lang == 'es' %}¿Francia ganará el Mundial 2026?
+              {% elsif lang == 'it' %}La Francia vincerà i Mondiali 2026?
+              {% else %}Will France win the 2026 World Cup?{% endif %}
+            </p>
+            <!-- Split bar -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                   style="margin-bottom:10px;">
+              <tr>
+                <td width="25%" style="padding:0;">
+                  <div style="height:6px;background-color:#00cecb;border-radius:3px 0 0 3px;"></div>
+                </td>
+                <td width="75%" style="padding:0;">
+                  <div style="height:6px;background-color:#ff5e5b;border-radius:0 3px 3px 0;"></div>
+                </td>
+              </tr>
+            </table>
+            <!-- Yes / No labels -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="left">
+                  <span style="font-family:Verdana,sans-serif;font-size:12px;font-weight:700;color:#00cecb;">Yes 25¢</span>
+                </td>
+                <td align="right">
+                  <span style="font-family:Verdana,sans-serif;font-size:12px;font-weight:700;color:#ff5e5b;">No 75¢</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 20px 16px;">
+            <a href="https://app.zengo.com/predict/fifa?utm_source=braze&utm_medium=email&utm_campaign=intro_prediction_markets&utm_content=card1_cta"
+               style="display:inline-block;background-color:#fe990c;color:#101010;
+                      font-family:Verdana,sans-serif;font-size:12px;font-weight:900;
+                      text-decoration:none;border-radius:100px;padding:9px 22px;">
+              {% if lang == 'fr' %}Prendre position
+              {% elsif lang == 'de' %}Position nehmen
+              {% elsif lang == 'es' %}Tomar posición
+              {% elsif lang == 'it' %}Prendi posizione
+              {% else %}Take a position{% endif %}
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Market Card 2 — Bitcoin -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+             style="background-color:#1a1a1a;border-radius:16px;margin-bottom:12px;overflow:hidden;">
+        <tr>
+          <td style="padding:20px 20px 16px;">
+            <p style="margin:0 0 12px;font-family:Verdana,sans-serif;font-size:10px;font-weight:700;
+                       color:#707482;text-transform:uppercase;letter-spacing:0.1em;">Crypto &middot; Bitcoin</p>
+            <p style="margin:0 0 16px;font-family:Verdana,sans-serif;font-size:15px;font-weight:700;
+                       color:#ffffff;line-height:1.3;">
+              {% if lang == 'fr' %}Le Bitcoin atteindra-t-il 150 000 $ avant fin 2026 ?
+              {% elsif lang == 'de' %}Wird Bitcoin bis Ende 2026 $150.000 erreichen?
+              {% elsif lang == 'es' %}¿Bitcoin llegará a $150.000 antes de fin de 2026?
+              {% elsif lang == 'it' %}Bitcoin raggiungerà $150.000 entro fine 2026?
+              {% else %}Will Bitcoin reach $150,000 before end of 2026?{% endif %}
+            </p>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                   style="margin-bottom:10px;">
+              <tr>
+                <td width="58%" style="padding:0;">
+                  <div style="height:6px;background-color:#00cecb;border-radius:3px 0 0 3px;"></div>
+                </td>
+                <td width="42%" style="padding:0;">
+                  <div style="height:6px;background-color:#ff5e5b;border-radius:0 3px 3px 0;"></div>
+                </td>
+              </tr>
+            </table>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="left"><span style="font-family:Verdana,sans-serif;font-size:12px;font-weight:700;color:#00cecb;">Yes 58¢</span></td>
+                <td align="right"><span style="font-family:Verdana,sans-serif;font-size:12px;font-weight:700;color:#ff5e5b;">No 42¢</span></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 20px 16px;">
+            <a href="https://app.zengo.com/predict/crypto?utm_source=braze&utm_medium=email&utm_campaign=intro_prediction_markets&utm_content=card2_cta"
+               style="display:inline-block;background-color:#fe990c;color:#101010;
+                      font-family:Verdana,sans-serif;font-size:12px;font-weight:900;
+                      text-decoration:none;border-radius:100px;padding:9px 22px;">
+              {% if lang == 'fr' %}Prendre position
+              {% elsif lang == 'de' %}Position nehmen
+              {% elsif lang == 'es' %}Tomar posición
+              {% elsif lang == 'it' %}Prendi posizione
+              {% else %}Take a position{% endif %}
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Market Card 3 — Politics -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+             style="background-color:#1a1a1a;border-radius:16px;overflow:hidden;">
+        <tr>
+          <td style="padding:20px 20px 16px;">
+            <p style="margin:0 0 12px;font-family:Verdana,sans-serif;font-size:10px;font-weight:700;
+                       color:#707482;text-transform:uppercase;letter-spacing:0.1em;">
+              {% if lang == 'fr' %}Politique &middot; Monde
+              {% elsif lang == 'de' %}Politik &middot; Welt
+              {% elsif lang == 'es' %}Política &middot; Mundo
+              {% elsif lang == 'it' %}Politica &middot; Mondo
+              {% else %}Politics &middot; World{% endif %}
+            </p>
+            <p style="margin:0 0 16px;font-family:Verdana,sans-serif;font-size:15px;font-weight:700;
+                       color:#ffffff;line-height:1.3;">
+              {% if lang == 'fr' %}L'IA remplacera-t-elle 10 % des emplois avant 2030 ?
+              {% elsif lang == 'de' %}Wird KI bis 2030 10% der Arbeitsplätze ersetzen?
+              {% elsif lang == 'es' %}¿La IA reemplazará el 10% de los empleos antes de 2030?
+              {% elsif lang == 'it' %}L'IA sostituirà il 10% dei lavori entro il 2030?
+              {% else %}Will AI replace 10% of jobs before 2030?{% endif %}
+            </p>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                   style="margin-bottom:10px;">
+              <tr>
+                <td width="71%" style="padding:0;">
+                  <div style="height:6px;background-color:#00cecb;border-radius:3px 0 0 3px;"></div>
+                </td>
+                <td width="29%" style="padding:0;">
+                  <div style="height:6px;background-color:#ff5e5b;border-radius:0 3px 3px 0;"></div>
+                </td>
+              </tr>
+            </table>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="left"><span style="font-family:Verdana,sans-serif;font-size:12px;font-weight:700;color:#00cecb;">Yes 71¢</span></td>
+                <td align="right"><span style="font-family:Verdana,sans-serif;font-size:12px;font-weight:700;color:#ff5e5b;">No 29¢</span></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 20px 16px;">
+            <a href="https://app.zengo.com/predict/politics?utm_source=braze&utm_medium=email&utm_campaign=intro_prediction_markets&utm_content=card3_cta"
+               style="display:inline-block;background-color:#fe990c;color:#101010;
+                      font-family:Verdana,sans-serif;font-size:12px;font-weight:900;
+                      text-decoration:none;border-radius:100px;padding:9px 22px;">
+              {% if lang == 'fr' %}Prendre position
+              {% elsif lang == 'de' %}Position nehmen
+              {% elsif lang == 'es' %}Tomar posición
+              {% elsif lang == 'it' %}Prendi posizione
+              {% else %}Take a position{% endif %}
+            </a>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+<!-- / LIVE MARKETS -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     5. WHY IT'S DIFFERENT — Light section, 2-column differentiators
+     ═══════════════════════════════════════════════════ -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+       style="background-color:#f8f5f2;">
+  <tr>
+    <td align="center" style="padding:56px 32px 48px;">
+
+      <p style="margin:0 0 8px;font-family:Verdana,sans-serif;font-size:11px;font-weight:700;
+                color:#707482;text-transform:uppercase;letter-spacing:0.12em;">
+        {% if lang == 'fr' %}Pas comme les paris sportifs
+        {% elsif lang == 'de' %}Anders als Sportwetten
+        {% elsif lang == 'es' %}No como las apuestas deportivas
+        {% elsif lang == 'it' %}Diverso dalle scommesse sportive
+        {% else %}Not like sports betting{% endif %}
+      </p>
+
+      <h2 style="margin:0 0 36px;font-family:Verdana,sans-serif;font-size:24px;font-weight:900;
+                  letter-spacing:-0.03em;line-height:1.2;color:#101010;">
+        {% if lang == 'fr' %}Ici, ta connaissance est ton avantage.
+        {% elsif lang == 'de' %}Hier ist dein Wissen dein Vorteil.
+        {% elsif lang == 'es' %}Aquí, tu conocimiento es tu ventaja.
+        {% elsif lang == 'it' %}Qui la tua conoscenza è il tuo vantaggio.
+        {% else %}Here, your knowledge is your edge.{% endif %}
+      </h2>
+
+      <!-- 2-col differentiators -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <!-- Col 1 -->
+          <td class="split-col" width="50%" valign="top" style="padding:0 8px 0 0;vertical-align:top;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                   style="background:#ffffff;border-radius:16px;border:1.5px solid #ebebeb;">
+              <tr>
+                <td style="padding:24px;">
+                  <div style="width:36px;height:4px;background-color:#fe990c;border-radius:2px;margin-bottom:16px;"></div>
+                  <div style="font-family:Verdana,sans-serif;font-size:14px;font-weight:700;color:#101010;margin-bottom:8px;line-height:1.3;">
+                    {% if lang == 'fr' %}Vrai prix de marché
+                    {% elsif lang == 'de' %}Echte Marktpreise
+                    {% elsif lang == 'es' %}Precios reales de mercado
+                    {% elsif lang == 'it' %}Prezzi reali di mercato
+                    {% else %}Real market prices{% endif %}
+                  </div>
+                  <div style="font-family:Verdana,sans-serif;font-size:12px;color:#707482;line-height:1.55;">
+                    {% if lang == 'fr' %}Les prix reflètent ce que des millions de traders pensent réellement. Pas une maison.
+                    {% elsif lang == 'de' %}Preise spiegeln wider, was Millionen Händler wirklich denken. Kein Buchmacher.
+                    {% elsif lang == 'es' %}Los precios reflejan lo que millones de traders realmente piensan. Sin casa.
+                    {% elsif lang == 'it' %}I prezzi riflettono ciò che milioni di trader pensano davvero. Nessuna casa.
+                    {% else %}Prices reflect what millions of traders actually think. No house edge.{% endif %}
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <!-- Col 2 -->
+          <td class="split-col" width="50%" valign="top" style="padding:0 0 0 8px;vertical-align:top;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                   style="background:#ffffff;border-radius:16px;border:1.5px solid #ebebeb;">
+              <tr>
+                <td style="padding:24px;">
+                  <div style="width:36px;height:4px;background-color:#00cecb;border-radius:2px;margin-bottom:16px;"></div>
+                  <div style="font-family:Verdana,sans-serif;font-size:14px;font-weight:700;color:#101010;margin-bottom:8px;line-height:1.3;">
+                    {% if lang == 'fr' %}Vends quand tu veux
+                    {% elsif lang == 'de' %}Verkaufe jederzeit
+                    {% elsif lang == 'es' %}Vende cuando quieras
+                    {% elsif lang == 'it' %}Vendi quando vuoi
+                    {% else %}Sell any time{% endif %}
+                  </div>
+                  <div style="font-family:Verdana,sans-serif;font-size:12px;color:#707482;line-height:1.55;">
+                    {% if lang == 'fr' %}Tu n'as pas à attendre la fin. Vends ta position si les probabilités bougent en ta faveur.
+                    {% elsif lang == 'de' %}Du musst nicht bis zum Ende warten. Verkaufe, wenn sich die Odds zu deinen Gunsten verschieben.
+                    {% elsif lang == 'es' %}No tienes que esperar al final. Vende tu posición si las probabilidades se mueven a tu favor.
+                    {% elsif lang == 'it' %}Non devi aspettare la fine. Vendi la tua posizione se le probabilità si muovono a tuo favore.
+                    {% else %}You don't have to wait until the end. Sell your position if the odds move in your favour.{% endif %}
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+<!-- / WHY DIFFERENT -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     6. HOW IT WORKS — Content block
+     ═══════════════════════════════════════════════════ -->
+{{content_blocks.${zengo_how_it_works}}}
+
+
+<!-- ═══════════════════════════════════════════════════
+     7. FINAL CTA — Orange
+     ═══════════════════════════════════════════════════ -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+       style="background-color:#fe990c;">
+  <tr>
+    <td align="center" style="padding:52px 32px 48px;">
+
+      <h2 style="margin:0 0 12px;font-family:Verdana,sans-serif;font-size:26px;font-weight:900;
+                  letter-spacing:-0.03em;line-height:1.1;color:#101010;">
+        {% if lang == 'fr' %}Ta première prédiction t'attend.
+        {% elsif lang == 'de' %}Deine erste Vorhersage wartet auf dich.
+        {% elsif lang == 'es' %}Tu primera predicción te espera.
+        {% elsif lang == 'it' %}La tua prima previsione ti aspetta.
+        {% else %}Your first prediction is waiting.{% endif %}
+      </h2>
+
+      <p style="margin:0 0 32px;font-family:Verdana,sans-serif;font-size:15px;
+                color:rgba(0,0,0,0.65);line-height:1.5;max-width:380px;">
+        {% if lang == 'fr' %}Commence avec 1 centime. Construis ta confiance. Fais valoir tes connaissances.
+        {% elsif lang == 'de' %}Fang mit 1 Cent an. Bau Vertrauen auf. Lass dein Wissen für dich arbeiten.
+        {% elsif lang == 'es' %}Empieza con 1 centavo. Construye tu confianza. Haz que tu conocimiento valga.
+        {% elsif lang == 'it' %}Inizia con 1 centesimo. Costruisci fiducia. Fai valere la tua conoscenza.
+        {% else %}Start with 1&cent;. Build confidence. Put your knowledge to work.{% endif %}
+      </p>
+
+      <a href="https://app.zengo.com/predict?utm_source=braze&utm_medium=email&utm_campaign=intro_prediction_markets&utm_content=footer_cta"
+         style="display:inline-block;background-color:#101010;color:#ffffff;
+                font-family:Verdana,sans-serif;font-size:16px;font-weight:900;
+                text-decoration:none;border-radius:100px;padding:16px 44px;
+                letter-spacing:0.01em;">
+        {% if lang == 'fr' %}Faire ma première prédiction
+        {% elsif lang == 'de' %}Meine erste Vorhersage machen
+        {% elsif lang == 'es' %}Hacer mi primera predicción
+        {% elsif lang == 'it' %}Fai la mia prima previsione
+        {% else %}Make My First Prediction{% endif %}
+      </a>
+
+    </td>
+  </tr>
+</table>
+<!-- / FINAL CTA -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     8. DARK FOOTER — content block (includes {{${email_footer}}})
+     ═══════════════════════════════════════════════════ -->
+{{content_blocks.${zengo_dark_footer}}}
+
+
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
