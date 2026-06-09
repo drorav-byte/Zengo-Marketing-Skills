@@ -1,0 +1,13 @@
+{
+  "name": "zengo-campaign",
+  "displayName": "Zengo Campaign",
+  "version": "1.0.0",
+  "description": "Core Zengo SFMC email skill — design tokens, component patterns, copy bank, and email references sourced from the Zengo Predictions landing page v4",
+  "author": {
+    "name": "eToro Marketing Automation",
+    "email": "drorav@etoro.com"
+  },
+  "homepage": "https://github.com/drorav-byte/Zengo-Marketing-Skills",
+  "repository": "https://github.com/drorav-byte/Zengo-Marketing-Skills",
+  "keywords": ["zengo", "sfmc", "email", "etoro", "campaign"]
+}

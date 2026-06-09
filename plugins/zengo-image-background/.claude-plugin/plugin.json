@@ -1,0 +1,13 @@
+{
+  "name": "zengo-image-background",
+  "displayName": "Zengo Image Background",
+  "version": "1.0.0",
+  "description": "Zengo email extension for emails where a photo or app screenshot is the primary hero visual — S3 conventions, hero image block, and image-background section order",
+  "author": {
+    "name": "eToro Marketing Automation",
+    "email": "drorav@etoro.com"
+  },
+  "homepage": "https://github.com/drorav-byte/Zengo-Marketing-Skills",
+  "repository": "https://github.com/drorav-byte/Zengo-Marketing-Skills",
+  "keywords": ["zengo", "email", "hero", "image", "sfmc", "etoro"]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "zengo-marketing",
+  "owner": {
+    "name": "eToro Marketing Automation",
+    "email": "drorav@etoro.com"
+  },
+  "description": "Zengo campaign email and multi-channel marketing skills for SFMC and Braze",
+  "plugins": [
+    {
+      "name": "zengo-campaign",
+      "source": "./plugins/zengo-campaign",
+      "description": "Core Zengo SFMC email skill — design tokens, component patterns, copy bank, and email references"
+    },
+    {
+      "name": "zengo-launch-kit",
+      "source": "./plugins/zengo-launch-kit",
+      "description": "Zengo Predictions launch copy and channel briefs for social, in-app (Braze), and email"
+    },
+    {
+      "name": "zengo-image-background",
+      "source": "./plugins/zengo-image-background",
+      "description": "Zengo email extension for photo/app-screenshot hero layouts"
+    }
+  ]
+}

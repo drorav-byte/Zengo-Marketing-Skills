@@ -1,0 +1,13 @@
+{
+  "name": "zengo-launch-kit",
+  "displayName": "Zengo Launch Kit",
+  "version": "1.0.0",
+  "description": "Zengo Predictions launch copy and channel briefs — social (X, Facebook, Instagram, LinkedIn), in-app Braze specs, and email campaign brief",
+  "author": {
+    "name": "eToro Marketing Automation",
+    "email": "drorav@etoro.com"
+  },
+  "homepage": "https://github.com/drorav-byte/Zengo-Marketing-Skills",
+  "repository": "https://github.com/drorav-byte/Zengo-Marketing-Skills",
+  "keywords": ["zengo", "launch", "social", "braze", "etoro", "campaign"]
+}
